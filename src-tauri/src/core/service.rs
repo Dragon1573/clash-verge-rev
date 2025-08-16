@@ -230,7 +230,7 @@ pub fn reinstall_service() -> Result<()> {
 #[cfg(target_os = "linux")]
 pub fn uninstall_service() -> Result<()> {
     logging!(info, Type::Service, true, "uninstall service");
-    use users::get_effective_uid;
+    use uzers::get_effective_uid;
 
     let uninstall_path = tauri::utils::platform::current_exe()?.with_file_name("uninstall-service");
 
@@ -270,7 +270,7 @@ pub fn uninstall_service() -> Result<()> {
 #[cfg(target_os = "linux")]
 pub fn install_service() -> Result<()> {
     logging!(info, Type::Service, true, "install service");
-    use users::get_effective_uid;
+    use uzers::get_effective_uid;
 
     let install_path = tauri::utils::platform::current_exe()?.with_file_name("install-service");
 
