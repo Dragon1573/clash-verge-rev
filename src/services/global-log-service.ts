@@ -1,11 +1,11 @@
 // 全局日志服务，使应用在任何页面都能收集日志
-import { create } from "zustand";
 import {
+  clearLogs as clearLogsIPC,
   fetchLogsViaIPC,
   startLogsStreaming,
   stopLogsStreaming,
-  clearLogs as clearLogsIPC,
 } from "@/services/ipc-log-service";
+import { create } from "zustand";
 
 // 最大日志数量
 const MAX_LOG_NUM = 1000;
