@@ -251,6 +251,50 @@ jobs:
           save-if: ${{ github.ref == 'refs/heads/dev' }}
           shared-key: autobuild-shared-arm
 
+      - name: Install dependencies (ubuntu only)
+        if: matrix.os == 'ubuntu-22.04-arm'
+        run: |
+          echo "::group::Checking apt source configuration folder ..."
+          sudo ls -lR /etc/apt/
+          echo "::endgroup::"
+
+          echo "::group::Checking apt sources ..."
+          sudo cat /etc/apt/sources.list
+          echo "::endgroup::"
+
+          echo "::group::Updating apt index ..."
+          sudo apt-get update
+          echo "::endgroup::"
+
+          echo "::group::Createing new configs and performing overwrite ..."
+          cat > /tmp/sources.list << EOF
+          deb [arch=armhf,arm64] http://ports.ubuntu.com/ubuntu-ports jammy main multiverse universe restricted
+          deb [arch=armhf,arm64] http://ports.ubuntu.com/ubuntu-ports jammy-security main multiverse universe restricted
+          deb [arch=armhf,arm64] http://ports.ubuntu.com/ubuntu-ports jammy-updates main multiverse universe restricted
+          deb [arch=armhf,arm64] http://ports.ubuntu.com/ubuntu-ports jammy-backports main multiverse universe restricted
+          EOF
+          sudo mv -v /etc/apt/sources.list /etc/apt/sources.list.bak
+          sudo mv -v /tmp/sources.list /etc/apt/sources.list
+          echo "\n"$(sudo cat /etc/apt/sources.list)"\n"
+          sudo dpkg --add-architecture ${{ matrix.arch }}
+          echo "::endgroup::"
+
+          echo "::group::Updating apt cache ..."
+          sudo apt-get update -y
+          sudo apt-get -f install -y
+          echo "::endgroup::"
+
+          echo "::group::Installing dependencies ..."
+          sudo apt-get install -y \
+            pkg-config:${{ matrix.arch }} \
+            libxslt1.1:${{ matrix.arch }} \
+            libwebkit2gtk-4.1-dev:${{ matrix.arch }} \
+            libayatana-appindicator3-dev:${{ matrix.arch }} \
+            libssl-dev:${{ matrix.arch }} \
+            patchelf:${{ matrix.arch }} \
+            librsvg2-dev:${{ matrix.arch }}
+          echo "::endgroup::"
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -269,13 +313,6 @@ jobs:
 
       - name: Release ${{ env.TAG_CHANNEL }} Version
         run: pnpm release-version autobuild-latest
-
-      - name: Install aarch64 tools
-        if: matrix.target == 'aarch64-unknown-linux-gnu'
-        run: |
-          sudo apt install -y \
-            gcc-aarch64-linux-gnu \
-            g++-aarch64-linux-gnu
 
       - name: Install armv7 tools
         if: matrix.target == 'armv7-unknown-linux-gnueabihf'
