@@ -88,6 +88,7 @@ jobs:
           - 更新 GitHub Workflows 用于构建的操作系统版本
             - \`windows-latest\` -> \`windows-2025-vs2026\`
           - 移除 \`aarch64\` / \`armv7\` 架构，同步移除 Windows WebView2-bundled 版本
+          - 切换 Mihomo 内核版本：从官方默认 \`amd64-v2\` 切换为 \`amd64-v3\`
 
           > [!CAUTION]
           > 
