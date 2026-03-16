@@ -234,6 +234,29 @@ async function updateTauriConfigVersion(newVersion) {
 }
 
 /**
+ * 更新更新日志版本号
+ * @param {string} newVersion
+ */
+async function updateUpdatelogVersion(newVersion) {
+  const _dirname = process.cwd()
+  const updatelogPath = path.join(_dirname, 'Changelog.md')
+  try {
+    const data = await fs.readFile(updatelogPath, 'utf8')
+    const lines = data.split('\n')
+    console.log(
+      '[INFO]: Current Changelog.md version is: ',
+      lines[0].split(' ')[1].slice(1),
+    )
+    lines.splice(0, 1, `## ${normalizeVersion(newVersion)}`)
+    await fs.writeFile(updatelogPath, lines.join('\n'), 'utf8')
+    console.log(`[INFO]: Changelog.md version updated to: ${newVersion}`)
+  } catch (error) {
+    console.error('Error updating Changelog.md version:', error)
+    throw error
+  }
+}
+
+/**
  * 获取当前版本号
  */
 async function getCurrentVersion() {
@@ -300,6 +323,7 @@ async function main(versionArg) {
     await updatePackageVersion(newVersion)
     await updateCargoVersion(newVersion)
     await updateTauriConfigVersion(newVersion)
+    await updateUpdatelogVersion(newVersion)
     console.log('[SUCCESS]: All version updates completed successfully!')
   } catch (error) {
     console.error('[ERROR]: Failed to update versions:', error)
