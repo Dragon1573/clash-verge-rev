@@ -26,8 +26,8 @@ on:
 
 permissions: write-all
 env:
-  TAG_NAME: deploytest
-  TAG_CHANNEL: DeployTest
+  TAG_NAME: patch
+  TAG_CHANNEL: Patch
   CARGO_INCREMENTAL: 0
   RUST_BACKTRACE: short
   HUSKY: 0

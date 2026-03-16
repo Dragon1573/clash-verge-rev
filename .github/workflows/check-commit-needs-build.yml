@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       tag_name:
-        description: 'Release tag name to check against (default: autobuild)'
+        description: 'Release tag name to check against (default: daily)'
         required: false
-        default: 'autobuild'
+        default: 'daily'
         type: string
       force_build:
         description: 'Force build regardless of checks'
@@ -16,9 +16,9 @@ on:
   workflow_call:
     inputs:
       tag_name:
-        description: 'Release tag name to check against (default: autobuild)'
+        description: 'Release tag name to check against (default: daily)'
         required: false
-        default: 'autobuild'
+        default: 'daily'
         type: string
       force_build:
         description: 'Force build regardless of checks'
@@ -32,16 +32,16 @@ on:
       last_tauri_commit:
         description: 'The last commit hash with Tauri-related changes'
         value: ${{ jobs.check_commit.outputs.last_tauri_commit }}
-      autobuild_version:
-        description: 'The generated autobuild version string'
-        value: ${{ jobs.check_commit.outputs.autobuild_version }}
+      daily_version:
+        description: 'The generated daily version string'
+        value: ${{ jobs.check_commit.outputs.daily_version }}
 
 permissions:
   contents: read
   actions: read
 
 env:
-  TAG_NAME: ${{ inputs.tag_name || 'autobuild' }}
+  TAG_NAME: ${{ inputs.tag_name || 'daily' }}
 
 jobs:
   check_commit:
@@ -50,7 +50,7 @@ jobs:
     outputs:
       should_run: ${{ steps.check.outputs.should_run }}
       last_tauri_commit: ${{ steps.check.outputs.last_tauri_commit }}
-      autobuild_version: ${{ steps.check.outputs.autobuild_version }}
+      daily_version: ${{ steps.check.outputs.daily_version }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -102,47 +102,47 @@ jobs:
 
           echo "📝 Last Tauri-related commit: $LAST_TAURI_COMMIT"
 
-          # Generate autobuild version using autobuild-latest format
+          # Generate daily version using daily-latest format
           CURRENT_BASE_VERSION=$(echo "$CURRENT_VERSION" | sed -E 's/-(alpha|beta|rc)(\.[0-9]+)?//g' | sed -E 's/\+[a-zA-Z0-9.-]+//g')
           MONTH=$(TZ=Asia/Shanghai date +%m)
           DAY=$(TZ=Asia/Shanghai date +%d)
-          AUTOBUILD_VERSION="${CURRENT_BASE_VERSION}+autobuild.${MONTH}${DAY}.${LAST_TAURI_COMMIT}"
+          DAILY_VERSION="${CURRENT_BASE_VERSION}+daily.${MONTH}${DAY}.${LAST_TAURI_COMMIT}"
 
-          echo "🏷️  Autobuild version: $AUTOBUILD_VERSION"
+          echo "🏷️  Daily version: $DAILY_VERSION"
           echo "📝 Last Tauri commit: $LAST_TAURI_COMMIT"
 
           # Set outputs for other jobs to use
           echo "last_tauri_commit=$LAST_TAURI_COMMIT" >> $GITHUB_OUTPUT
-          echo "autobuild_version=$AUTOBUILD_VERSION" >> $GITHUB_OUTPUT
+          echo "daily_version=$DAILY_VERSION" >> $GITHUB_OUTPUT
 
-          # Check if autobuild release exists
-          echo "🔍 Checking autobuild release and latest.json..."
-          AUTOBUILD_RELEASE_EXISTS=$(gh release view "${{ env.TAG_NAME }}" --json id -q '.id' 2>/dev/null || echo "")
+          # Check if daily release exists
+          echo "🔍 Checking daily release and latest.json..."
+          DAILY_RELEASE_EXISTS=$(gh release view "${{ env.TAG_NAME }}" --json id -q '.id' 2>/dev/null || echo "")
 
-          if [ -z "$AUTOBUILD_RELEASE_EXISTS" ]; then
-            echo "✅ No autobuild release exists, build needed"
+          if [ -z "$DAILY_RELEASE_EXISTS" ]; then
+            echo "✅ No daily release exists, build needed"
             echo "should_run=true" >> $GITHUB_OUTPUT
           else
             # Check if latest.json exists in the release
             LATEST_JSON_EXISTS=$(gh release view "${{ env.TAG_NAME }}" --json assets -q '.assets[] | select(.name == "latest.json") | .name' 2>/dev/null || echo "")
             
             if [ -z "$LATEST_JSON_EXISTS" ]; then
-              echo "✅ No latest.json found in autobuild release, build needed"
+              echo "✅ No latest.json found in daily release, build needed"
               echo "should_run=true" >> $GITHUB_OUTPUT
             else
               # Download and parse latest.json to check version and commit hash
               echo "📥 Downloading latest.json to check version..."
-              LATEST_JSON_URL="https://github.com/clash-verge-rev/clash-verge-rev/releases/download/autobuild/latest.json"
+              LATEST_JSON_URL=$(gh release view "daily" --json assets -q '.assets[] | select(.name == "latest.json") | .url' 2>/dev/null)
               
               LATEST_JSON_CONTENT=$(curl -sL "$LATEST_JSON_URL" 2>/dev/null || echo "")
               
               if [ -n "$LATEST_JSON_CONTENT" ]; then
                 LATEST_VERSION=$(echo "$LATEST_JSON_CONTENT" | jq -r '.version' 2>/dev/null || echo "")
-                echo "📦 Latest autobuild version: $LATEST_VERSION"
+                echo "📦 Latest daily version: $LATEST_VERSION"
                 
-                # Extract commit hash from version string (format: X.Y.Z+autobuild.MMDD.commit)
-                LATEST_COMMIT=$(echo "$LATEST_VERSION" | sed -n 's/.*+autobuild\.[0-9]\{4\}\.\([a-f0-9]*\)$/\1/p' || echo "")
-                echo "📝 Latest autobuild commit: $LATEST_COMMIT"
+                # Extract commit hash from version string (format: X.Y.Z+daily.MMDD.commit)
+                LATEST_COMMIT=$(echo "$LATEST_VERSION" | sed -n 's/.*+daily\.[0-9]\{4\}\.\([a-f0-9]*\)$/\1/p' || echo "")
+                echo "📝 Latest daily commit: $LATEST_COMMIT"
                 
                 if [ "$LAST_TAURI_COMMIT" != "$LATEST_COMMIT" ]; then
                   echo "✅ Tauri commit hash mismatch ($LAST_TAURI_COMMIT != $LATEST_COMMIT), build needed"

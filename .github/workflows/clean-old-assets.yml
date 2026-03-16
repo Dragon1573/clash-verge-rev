@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       tag_name:
-        description: 'Release tag name to clean (default: autobuild)'
+        description: 'Release tag name to clean (default: daily)'
         required: false
-        default: 'autobuild'
+        default: 'daily'
         type: string
       dry_run:
         description: 'Dry run mode (only show what would be deleted)'
@@ -16,9 +16,9 @@ on:
   workflow_call:
     inputs:
       tag_name:
-        description: 'Release tag name to clean (default: autobuild)'
+        description: 'Release tag name to clean (default: daily)'
         required: false
-        default: 'autobuild'
+        default: 'daily'
         type: string
       dry_run:
         description: 'Dry run mode (only show what would be deleted)'
@@ -29,8 +29,8 @@ on:
 permissions: write-all
 
 env:
-  TAG_NAME: ${{ inputs.tag_name || 'autobuild' }}
-  TAG_CHANNEL: AutoBuild
+  TAG_NAME: ${{ inputs.tag_name || 'daily' }}
+  TAG_CHANNEL: Daily
 
 jobs:
   check_current_version:
@@ -39,7 +39,7 @@ jobs:
     outputs:
       current_version: ${{ steps.check.outputs.current_version }}
       last_tauri_commit: ${{ steps.check.outputs.last_tauri_commit }}
-      autobuild_version: ${{ steps.check.outputs.autobuild_version }}
+      daily_version: ${{ steps.check.outputs.daily_version }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -86,18 +86,18 @@ jobs:
           echo "📝 Last Tauri-related commit: $LAST_TAURI_COMMIT"
           echo "📝 Current commit: $(git rev-parse --short HEAD)"
 
-          # Generate autobuild version for consistency
+          # Generate daily version for consistency
           CURRENT_BASE_VERSION=$(echo "$CURRENT_VERSION" | sed -E 's/-(alpha|beta|rc)(\.[0-9]+)?//g' | sed -E 's/\+[a-zA-Z0-9.-]+//g')
           MONTH=$(TZ=Asia/Shanghai date +%m)
           DAY=$(TZ=Asia/Shanghai date +%d)
-          AUTOBUILD_VERSION="${CURRENT_BASE_VERSION}+autobuild.${MONTH}${DAY}.${LAST_TAURI_COMMIT}"
+          DAILY_VERSION="${CURRENT_BASE_VERSION}+daily.${MONTH}${DAY}.${LAST_TAURI_COMMIT}"
 
-          echo "🏷️  Current autobuild version: $AUTOBUILD_VERSION"
+          echo "🏷️  Current daily version: $DAILY_VERSION"
 
           # Set outputs for other jobs to use
           echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
           echo "last_tauri_commit=$LAST_TAURI_COMMIT" >> $GITHUB_OUTPUT
-          echo "autobuild_version=$AUTOBUILD_VERSION" >> $GITHUB_OUTPUT
+          echo "daily_version=$DAILY_VERSION" >> $GITHUB_OUTPUT
 
   clean_old_assets:
     name: Clean Old Release Assets
@@ -114,12 +114,12 @@ jobs:
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
           # Use values from check_current_version job
-          CURRENT_AUTOBUILD_VERSION="${{ needs.check_current_version.outputs.autobuild_version }}"
+          CURRENT_DAILY_VERSION="${{ needs.check_current_version.outputs.daily_version }}"
           LAST_TAURI_COMMIT="${{ needs.check_current_version.outputs.last_tauri_commit }}"
           CURRENT_VERSION="${{ needs.check_current_version.outputs.current_version }}"
 
           echo "📦 Current version: $CURRENT_VERSION"
-          echo "📦 Current autobuild version: $CURRENT_AUTOBUILD_VERSION"
+          echo "📦 Current daily version: $CURRENT_DAILY_VERSION"
           echo "📝 Last Tauri commit: $LAST_TAURI_COMMIT"
           echo "🏷️  Target tag: $TAG_NAME"
           echo "🔍 Dry run mode: $DRY_RUN"
@@ -151,8 +151,8 @@ jobs:
           ASSETS_TO_DELETE=""
 
           for asset in $assets; do
-            # Keep assets that match current autobuild version or are non-versioned files (like latest.json)
-            if [[ "$asset" == *"$CURRENT_AUTOBUILD_VERSION"* ]] || [[ "$asset" == "latest.json" ]]; then
+            # Keep assets that match current daily version or are non-versioned files (like latest.json)
+            if [[ "$asset" == *"$CURRENT_DAILY_VERSION"* ]] || [[ "$asset" == "latest.json" ]]; then
               ASSETS_TO_KEEP="$ASSETS_TO_KEEP$asset\n"
             else
               ASSETS_TO_DELETE="$ASSETS_TO_DELETE$asset\n"
@@ -160,7 +160,7 @@ jobs:
           done
 
           echo ""
-          echo "🔒 Assets to keep (current version: $CURRENT_AUTOBUILD_VERSION):"
+          echo "🔒 Assets to keep (current version: $CURRENT_DAILY_VERSION):"
           if [ -n "$ASSETS_TO_KEEP" ]; then
             echo -e "$ASSETS_TO_KEEP" | grep -v '^$' | sed 's/^/  - /'
           else
@@ -190,7 +190,7 @@ jobs:
             
             for asset in $assets; do
               # Skip assets that should be kept
-              if [[ "$asset" == *"$CURRENT_AUTOBUILD_VERSION"* ]] || [[ "$asset" == "latest.json" ]]; then
+              if [[ "$asset" == *"$CURRENT_DAILY_VERSION"* ]] || [[ "$asset" == "latest.json" ]]; then
                 continue
               fi
               
