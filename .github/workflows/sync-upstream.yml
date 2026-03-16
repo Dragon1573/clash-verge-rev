@@ -1,0 +1,67 @@
+name: Sync Upstream
+
+on:
+  push:
+    branches: dev
+  workflow_dispatch:
+  schedule:
+    # UTC+8 0,6,12,18
+    - cron: '0 0,6,12,18 * * *'
+      # GitHub Workflows 新语法，直接支持时区设置，无需额外时差计算
+      timezone: 'Asia/Hong_Kong'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  sync_upstream:
+    name: Sync Upstream
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          # Allow fetching all history for target branch,
+          # to avoid unexpected conflicts.
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+
+      - name: Configure identity
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream
+        run: |
+          echo "::group::Fetching upstream ..."
+          git remote add upstream https://github.com/clash-verge-rev/clash-verge-rev.git
+          git fetch --verbose --progress --prune --no-tags upstream dev
+          git show-ref upstream/dev
+          echo "::endgroup::"
+          echo "::group::Checking all remotes ..."
+          git remote -v
+          echo "::endgroup::"
+
+      - name: Up-to-date check
+        id: check
+        run: |
+          # Check if dev branch is up-to-date with upstream/dev
+          SHOULD_REBASE=$(git merge-base --is-ancestor upstream/dev refs/remotes/origin/dev && echo 'false' || echo 'true')
+          if [ "$SHOULD_REBASE" == "true" ]; then
+            echo "ℹ️ Branch "origin/dev" is backward with "upstream/dev". Rebasing ..."
+          else
+            echo "🎉 Branch "origin/dev" is up-to-date with "upstream/dev"!"
+          fi
+          echo "SHOULD_REBASE=$SHOULD_REBASE" >> "$GITHUB_OUTPUT"
+
+      - name: Rebase with upstream
+        if: steps.check.outputs.SHOULD_REBASE == 'true'
+        run: |
+          git rebase --verbose upstream/dev
+
+      - name: Push changes
+        if: steps.check.outputs.SHOULD_REBASE == 'true'
+        run: |
+          git push --verbose --progress --force-with-lease origin dev
