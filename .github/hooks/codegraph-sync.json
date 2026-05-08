@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "type": "command",
+        "bash": "codegraph sync -q",
+        "powershell": "codegraph.ps1 sync -q",
+        "timeoutSec": 30
+      }
+    ],
+    "agentStop": [
+      {
+        "type": "command",
+        "bash": "codegraph sync -q",
+        "powershell": "codegraph.ps1 sync -q",
+        "timeoutSec": 30
+      }
+    ],
+    "postToolUse": [
+      {
+        "type": "command",
+        "bash": "bash .github/hooks/codegraph-sync.sh",
+        "powershell": "powershell -NoProfile -File .github\\hooks\\codegraph-sync.ps1",
+        "timeoutSec": 30
+      }
+    ]
+  }
+}
