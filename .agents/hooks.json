@@ -1,0 +1,27 @@
+{
+  "codegraph-dirty-hook": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "codegraph mark-dirty"
+          }
+        ]
+      }
+    ]
+  },
+  "codegraph-sync-hook": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "codegraph sync-if-dirty"
+          }
+        ]
+      }
+    ]
+  }
+}
