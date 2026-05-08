@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "codegraph sync -q",
+        "windows": "powershell -NoProfile -Command \"codegraph.ps1 sync -q\"",
+        "timeout": 30000
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "codegraph sync -q",
+        "windows": "powershell -NoProfile -Command \"codegraph.ps1 sync -q\"",
+        "timeout": 30000
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "bash .github/hooks/codegraph-sync.sh",
+        "windows": "powershell -NoProfile -File .github/hooks/codegraph-sync.ps1",
+        "timeout": 30000
+      }
+    ]
+  }
+}
