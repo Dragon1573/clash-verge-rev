@@ -7,6 +7,7 @@
   - 移除 Windows `arm64` 版本
   - 移除 Windows 的内置 WebView2 版本
   - 移除 Windows 便携版
+- 升级 Mihomo 内核构建版本，在 Windows `amd64` 架构上使用 `amd64-v3`
 
 ### ℹ️ 其他改动
 
