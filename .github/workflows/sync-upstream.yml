@@ -18,6 +18,8 @@ jobs:
   sync_upstream:
     name: Sync Upstream
     runs-on: ubuntu-latest
+    outputs:
+      build: ${{ steps.push.outputs.SHOULD_BUILD }}
 
     steps:
       - name: Checkout repository
@@ -72,6 +74,13 @@ jobs:
             echo 'SHOULD_BUILD=false' >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Generate Autobuild Assets
-        if: steps.push.outputs.SHOULD_BUILD == 'true'
-        uses: ./.github/workflows/autobuild.yml
+
+  build_assets:
+    name: Generate Autobuild Assets
+    needs: sync_upstream
+    if: (needs.sync_upstream.outputs.build == 'true') || (github.event_name == 'push')
+    uses: ./.github/workflows/autobuild.yml
+    secrets:
+      TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+      TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
