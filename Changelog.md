@@ -7,7 +7,11 @@
 <summary><strong> 🐞 修复问题 </strong></summary>
 ### ⚠️ 主要差异
 
-
+- 后续不再提供以下发行版本：
+  - 移除 macOS / Linux 发行版本
+  - 移除 Windows `arm64` 版本
+  - 移除 Windows 的内置 WebView2 版本
+  - 移除 Windows 便携版
 
 ### ℹ️ 其他改动
 
