@@ -4,36 +4,36 @@ on:
   workflow_dispatch:
     inputs:
       tag_name:
-        description: 'Release tag name to check against (default: autobuild)'
+        description: "Release tag name to check against (default: daily)"
         required: false
-        default: 'autobuild'
+        default: "daily"
         type: string
       force_build:
-        description: 'Force build regardless of checks'
+        description: "Force build regardless of checks"
         required: false
         default: false
         type: boolean
   workflow_call:
     inputs:
       tag_name:
-        description: 'Release tag name to check against (default: autobuild)'
+        description: "Release tag name to check against (default: daily)"
         required: false
-        default: 'autobuild'
+        default: "daily"
         type: string
       force_build:
-        description: 'Force build regardless of checks'
+        description: "Force build regardless of checks"
         required: false
         default: false
         type: boolean
     outputs:
       should_run:
-        description: 'Whether the build should run'
+        description: "Whether the build should run"
         value: ${{ jobs.check_commit.outputs.should_run }}
       last_tauri_commit:
-        description: 'The last commit hash with Tauri-related changes'
+        description: "The last commit hash with Tauri-related changes"
         value: ${{ jobs.check_commit.outputs.last_tauri_commit }}
       autobuild_version:
-        description: 'The generated autobuild version string'
+        description: "The generated autobuild version string"
         value: ${{ jobs.check_commit.outputs.autobuild_version }}
 
 permissions:
@@ -41,7 +41,7 @@ permissions:
   actions: read
 
 env:
-  TAG_NAME: ${{ inputs.tag_name || 'autobuild' }}
+  TAG_NAME: ${{ inputs.tag_name || 'daily' }}
 
 jobs:
   check_commit:
@@ -100,7 +100,8 @@ jobs:
           CURRENT_BASE_VERSION=$(echo "$CURRENT_VERSION" | sed -E 's/-(alpha|beta|rc)(\.[0-9]+)?//g' | sed -E 's/\+[a-zA-Z0-9.-]+//g')
           MONTH=$(TZ=Asia/Shanghai date +%m)
           DAY=$(TZ=Asia/Shanghai date +%d)
-          AUTOBUILD_VERSION="${CURRENT_BASE_VERSION}+autobuild.${MONTH}${DAY}.${LAST_TAURI_COMMIT}"
+          DATE_STR=$(echo "${MONTH}${DAY}" | sed 's/^0*//')
+          AUTOBUILD_VERSION="${CURRENT_BASE_VERSION}-daily.${DATE_STR}.${LAST_TAURI_COMMIT}"
 
           echo "🏷️  Autobuild version: $AUTOBUILD_VERSION"
           echo "📝 Last Tauri commit: $LAST_TAURI_COMMIT"
@@ -122,7 +123,7 @@ jobs:
               echo "should_run=true" >> $GITHUB_OUTPUT
             else
               echo "📥 Downloading latest.json to check version..."
-              LATEST_JSON_URL="https://github.com/Dragon1573/clash-verge-rev/releases/download/autobuild/latest.json"
+              LATEST_JSON_URL="https://github.com/Dragon1573/clash-verge-rev/releases/download/daily/latest.json"
               
               LATEST_JSON_CONTENT=$(curl -sL "$LATEST_JSON_URL" 2>/dev/null || echo "")
               
@@ -130,7 +131,8 @@ jobs:
                 LATEST_VERSION=$(echo "$LATEST_JSON_CONTENT" | jq -r '.version' 2>/dev/null || echo "")
                 echo "📦 Latest autobuild version: $LATEST_VERSION"
                 
-                LATEST_COMMIT=$(echo "$LATEST_VERSION" | sed -n 's/.*+autobuild\.[0-9]\{4\}\.\([a-f0-9]*\)$/\1/p' || echo "")
+                # Extract commit hash from version string (format: X.Y.Z-daily.DATE.commit)
+                LATEST_COMMIT=$(echo "$LATEST_VERSION" | sed -n 's/.*-daily\.[0-9]\{3,4\}\.\([a-f0-9]*\)$/\1/p' || echo "")
                 echo "📝 Latest autobuild commit: $LATEST_COMMIT"
                 
                 if [ "$LAST_TAURI_COMMIT" != "$LATEST_COMMIT" ]; then
