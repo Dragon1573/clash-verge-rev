@@ -8,6 +8,8 @@
   - 移除 Windows 的内置 WebView2 版本
   - 移除 Windows 便携版
 - 升级 Mihomo 内核构建版本，在 Windows `amd64` 架构上使用 `amd64-v3`
+- 按照 Semantic Versioning 要求规范版本号
+  - 版本号格式切换为 `x.y.z-daily.date+commit` ，用于和上游作区分
 
 ### ℹ️ 其他改动
 
