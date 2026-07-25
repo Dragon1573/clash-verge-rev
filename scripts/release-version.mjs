@@ -8,8 +8,8 @@
  *   - A full semver version (e.g., 1.2.3, v1.2.3, 1.2.3-beta, v1.2.3+build)
  *   - A tag: "alpha", "beta", "rc", "autobuild", "autobuild-latest", or "deploytest"
  *     - "alpha", "beta", "rc": Appends the tag to the current base version (e.g., 1.2.3-beta)
- *     - "autobuild": Appends a timestamped autobuild tag (e.g., 1.2.3+autobuild.2406101530)
- *     - "autobuild-latest": Appends an autobuild tag with latest Tauri commit (e.g., 1.2.3+autobuild.0614.a1b2c3d)
+ *     - "autobuild": Appends a timestamped daily tag (e.g., 1.2.3-daily.614+a1b2c3d)
+ *     - "autobuild-latest": Appends an daily tag with latest Tauri commit (e.g., 1.2.3-daily.614+a1b2c3d)
  *     - "deploytest": Appends a timestamped deploytest tag (e.g., 1.2.3+deploytest.2406101530)
  *
  * Examples:
@@ -64,7 +64,7 @@ function generateShortTimestamp(withCommit = false, useTauriCommit = false) {
 
   const formatter = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'Asia/Shanghai',
-    month: '2-digit',
+    month: 'numeric',
     day: '2-digit',
   })
 
@@ -76,13 +76,13 @@ function generateShortTimestamp(withCommit = false, useTauriCommit = false) {
     const gitShort = useTauriCommit
       ? getLatestTauriCommit()
       : getGitShortCommit()
-    return `${month}${day}.${gitShort}`
+    return `${month}${day}+${gitShort}`
   }
   return `${month}${day}`
 }
 
 function isValidVersion(version) {
-  return /^v?\d+\.\d+\.\d+(-(alpha|beta|rc)(\.\d+)?)?(\+[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*)?$/i.test(
+  return /^v?\d+\.\d+\.\d+(-(alpha|beta|rc|daily)(\.\d+)?)?(\+[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*)?$/i.test(
     version,
   )
 }
@@ -92,7 +92,7 @@ function normalizeVersion(version) {
 }
 
 function getBaseVersion(version) {
-  let base = version.replace(/-(alpha|beta|rc)(\.\d+)?/i, '')
+  let base = version.replace(/-(alpha|beta|rc|daily)(\.\d+)?/i, '')
   base = base.replace(/\+[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*/g, '')
   return base
 }
@@ -184,6 +184,27 @@ async function updateTauriConfigVersion(newVersion) {
   }
 }
 
+async function updateChangelogVersion(newVersion) {
+  const _dirname = process.cwd()
+  const changelogPath = path.join(_dirname, 'Changelog.md')
+  try {
+    const data = await fs.readFile(changelogPath, 'utf8')
+    const lines = data.split('\n')
+
+    const version = newVersion.startsWith('v') ? newVersion : `v${newVersion}`
+
+    const updatedLines = lines.map((line) => {
+      return line.trim().startsWith('## ') ? `## ${version}` : line
+    })
+
+    await fs.writeFile(changelogPath, updatedLines.join('\n'), 'utf8')
+    console.log(`[INFO]: Changelog.md version updated to: ${version}`)
+  } catch (error) {
+    console.error('Error updating Changelog.md version:', error)
+    throw error
+  }
+}
+
 async function getCurrentVersion() {
   const _dirname = process.cwd()
   const packageJsonPath = path.join(_dirname, 'package.json')
@@ -218,11 +239,8 @@ async function main(versionArg) {
       const currentVersion = await getCurrentVersion()
       const baseVersion = getBaseVersion(currentVersion)
 
-      if (versionArg.toLowerCase() === 'autobuild') {
-        newVersion = `${baseVersion}+autobuild.${generateShortTimestamp(true, true)}`
-      } else if (versionArg.toLowerCase() === 'autobuild-latest') {
-        const latestTauriCommit = getLatestTauriCommit()
-        newVersion = `${baseVersion}+autobuild.${generateShortTimestamp()}.${latestTauriCommit}`
+      if (versionArg.toLowerCase().startsWith('autobuild')) {
+        newVersion = `${baseVersion}-daily.${generateShortTimestamp(true, true)}`
       } else if (versionArg.toLowerCase() === 'deploytest') {
         newVersion = `${baseVersion}+deploytest.${generateShortTimestamp(true, true)}`
       } else {
@@ -240,6 +258,7 @@ async function main(versionArg) {
     await updatePackageVersion(newVersion)
     await updateCargoVersion(newVersion)
     await updateTauriConfigVersion(newVersion)
+    await updateChangelogVersion(newVersion)
     console.log('[SUCCESS]: All version updates completed successfully!')
   } catch (error) {
     console.error('[ERROR]: Failed to update versions:', error)
