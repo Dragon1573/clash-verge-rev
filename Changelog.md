@@ -10,6 +10,8 @@
 - 升级 Mihomo 内核构建版本，在 Windows `amd64` 架构上使用 `amd64-v3`
 - 按照 Semantic Versioning 要求规范版本号
   - 版本号格式切换为 `x.y.z-daily.date+commit` ，用于和上游作区分
+- 引入「树外补丁」，避免相关更改产生新 Commit 值干扰版本号生成过程
+  - 切换 Tauri 签名密钥
 
 ### ℹ️ 其他改动
 

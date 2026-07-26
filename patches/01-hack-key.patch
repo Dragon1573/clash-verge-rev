@@ -1,0 +1,13 @@
+diff --git a/src-tauri/tauri.conf.json b/src-tauri/tauri.conf.json
+index 04d1dae7..35747740 100755
+--- a/src-tauri/tauri.conf.json
++++ b/src-tauri/tauri.conf.json
+@@ -30,7 +30,7 @@
+   "identifier": "io.github.clash-verge-rev.clash-verge-rev",
+   "plugins": {
+     "updater": {
+-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEQyOEMyRjBCQkVGOUJEREYKUldUZnZmbStDeStNMHU5Mmo1N24xQXZwSVRYbXA2NUpzZE5oVzlqeS9Bc0t6RVV4MmtwVjBZaHgK",
++      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEU0MDE0OTE4Q0MyM0E3MEMKUldRTXB5UE1HRWtCNUUrM2d3ekdIY2pTY1RXdzZkR2lYYWczcXYxWG5VR1p6eFc2NDBoSVA4WmsK",
+       "endpoints": [
+         "https://update.hwdns.net/https://github.com/clash-verge-rev/clash-verge-rev/releases/download/updater/update-proxy.json",
+         "https://gh-proxy.org/https://github.com/clash-verge-rev/clash-verge-rev/releases/download/updater/update-proxy.json",
