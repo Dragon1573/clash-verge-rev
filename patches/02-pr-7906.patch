@@ -1,0 +1,1775 @@
+:000000 100644 00000000 714cf6ba A	crates/clash-verge-i18n/locales/az.yml
+:100644 100644 f1e4082a 11c90a2b M	src/components/setting/setting-verge-basic.tsx
+:000000 100644 00000000 8f8591b7 A	src/locales/az/connections.json
+:000000 100644 00000000 d4c3ae7a A	src/locales/az/home.json
+:000000 100644 00000000 79c1d370 A	src/locales/az/layout.json
+:000000 100644 00000000 2a15fb72 A	src/locales/az/logs.json
+:000000 100644 00000000 089c13f9 A	src/locales/az/profiles.json
+:000000 100644 00000000 67761114 A	src/locales/az/proxies.json
+:000000 100644 00000000 fa12b73d A	src/locales/az/rules.json
+:000000 100644 00000000 0017a84e A	src/locales/az/settings.json
+:000000 100644 00000000 5468910d A	src/locales/az/shared.json
+:000000 100644 00000000 e51d9630 A	src/locales/az/tests.json
+:100644 100644 d614c5e9 0687df59 M	src/services/i18n.ts
+
+diff --git a/crates/clash-verge-i18n/locales/az.yml b/crates/clash-verge-i18n/locales/az.yml
+new file mode 100644
+index 00000000..714cf6ba
+--- /dev/null
++++ b/crates/clash-verge-i18n/locales/az.yml
+@@ -0,0 +1,93 @@
++_version: 1
++notifications:
++  dashboardToggled:
++    title: İdarə paneli
++    body: İdarə panelinin görünmə vəziyyəti dəyişdi.
++  clashModeChanged:
++    title: Rejim dəyişikliyi
++    body: '{mode} rejiminə keçildi.'
++  systemProxyToggled:
++    title: Sistem proksisi
++    'on': Sistem proksisi aktivləşdirildi.
++    'off': Sistem proksisi söndürüldü.
++  systemProxyFailed:
++    title: Sistem proksisi
++    body: Sistem proksisi qurulmadı, səbəbini öyrənmək üçün Clash Verge tətbiqini açın.
++  systemProxyGuardStopped:
++    title: Sistem proksisinin mühafizəsi
++    body: Mühafizə bir neçə uğursuz cəhddən sonra dayandı, səbəbini öyrənmək üçün Clash Verge tətbiqini açın.
++  tunModeToggled:
++    title: TUN rejimi
++    'on': TUN rejimi aktivləşdirildi.
++    'off': TUN rejimi söndürüldü.
++  lightweightModeEntered:
++    title: Yüngül rejim
++    body: Yüngül rejimə keçildi.
++  profilesReactivated:
++    title: Profillər
++    body: Profil yenidən aktivləşdirildi.
++  appQuit:
++    title: Çıxış
++    body: Clash Verge bağlanmaq üzrədir.
++  appHidden:
++    title: Tətbiqin gizlədilməsi
++    body: Clash Verge arxa planda işləyir.
++  updateReady:
++    title: Clash Verge yeniləməsi
++    body: Yeni versiya (v{version}) endirildi və quraşdırılmağa hazırdır.
++    installNow: İndi quraşdır
++    later: Sonra
++service:
++  adminInstallPrompt: Clash Verge xidmətini quraşdırmaq üçün administrator səlahiyyətləri tələb olunur.
++  adminUninstallPrompt: Clash Verge xidmətini silmək üçün administrator səlahiyyətləri tələb olunur.
++launchGuard:
++  currentExeError: 'Tətbiqin yerini müəyyən etmək mümkün olmadı: {error}'
++  homeDirError: 'Cari istifadəçinin ev qovluğunu müəyyən etmək mümkün olmadığından tətbiq bağlanacaq: {error}'
++  translocated: macOS bu tətbiqi müvəqqəti App Translocation qovluğundan işlədir, Finder vasitəsilə onu əl ilə /Applications və ya ~/Applications qovluğuna köçürün və yenidən açın.
++  rejected: |-
++    Bu tətbiq Applications qovluğundan başladılmalıdır.
++
++    {reason}
++  notInBundle: İcra olunan fayl tətbiq paketinin daxilində deyil.
++  canonicalizeBundleError: 'Tətbiq paketinin yolunu müəyyən etmək mümkün olmadı: {error}'
++  bundleNameError: Tətbiq paketinin adını müəyyən etmək mümkün olmadığından tətbiq bağlanacaq.
++  replacePrompt: '{destination} ünvanında artıq tətbiq mövcuddur, onu əvəz edib Applications qovluğundan yenidən başlatmaq istəyirsiniz?'
++  movePrompt: Arxa plan xidmətini təhlükəsiz başlatmaq üçün tətbiq {destination} ünvanına köçürülməlidir, onu indi köçürüb yenidən başlatmaq istəyirsiniz?
++  createApplicationsDirError: 'Applications qovluğunu yaratmaq mümkün olmadı: {error}'
++  moveFailed: Tətbiqi köçürmək mümkün olmadı, Finder vasitəsilə əl ilə köçürün və yenidən cəhd edin.
++  replaceFailed: 'Mövcud tətbiqi təhlükəsiz əvəz etmək mümkün olmadı: {error}'
++  relaunchFailed: Tətbiqin surəti çıxarıldı, lakin avtomatik yenidən başlatmaq mümkün olmadı, onu Applications qovluğundan əl ilə açın.
++  cancel: Ləğv et
++  move: Köçür
++  ok: Təsdiqlə
++tray:
++  dashboard: İdarə paneli
++  ruleMode: Qayda rejimi
++  globalMode: Qlobal rejim
++  directMode: Birbaşa rejim
++  outboundModes: Çıxış rejimləri
++  rule: Qayda
++  direct: Birbaşa
++  global: Qlobal
++  profiles: Profillər
++  proxies: Proksilər
++  systemProxy: Sistem proksisi
++  tunMode: TUN rejimi
++  closeAllConnections: Bütün əlaqələri bağla
++  lightweightMode: Yüngül rejim
++  copyEnv: Mühit dəyişənlərinin surətini çıxar
++  confDir: Konfiqurasiya qovluğu
++  coreDir: Nüvə qovluğu
++  logsDir: Jurnal qovluğu
++  openDir: Qovluğu aç
++  appLog: Tətbiq jurnalı
++  coreLog: Nüvə jurnalı
++  restartClash: Clash nüvəsini yenidən başlat
++  restartApp: Tətbiqi yenidən başlat
++  vergeVersion: Verge versiyası
++  more: Daha çox
++  exit: Çıxış
++  tooltip:
++    systemProxy: Sistem proksisi
++    tun: TUN
++    profile: Profil
+diff --git a/src/components/setting/setting-verge-basic.tsx b/src/components/setting/setting-verge-basic.tsx
+index f1e4082a..11c90a2b 100644
+--- a/src/components/setting/setting-verge-basic.tsx
++++ b/src/components/setting/setting-verge-basic.tsx
+@@ -44,6 +44,7 @@ const languageOptions = supportedLanguages.map((code) => {
+     es: 'Español',
+     jp: '日本語',
+     zhtw: '繁體中文',
++    az: 'Azərbaycan dili',
+   }
+   const label = labels[code] || code
+   return { code, label }
+diff --git a/src/locales/az/connections.json b/src/locales/az/connections.json
+new file mode 100644
+index 00000000..8f8591b7
+--- /dev/null
++++ b/src/locales/az/connections.json
+@@ -0,0 +1,34 @@
++{
++  "page": {
++    "title": "Əlaqələr"
++  },
++  "components": {
++    "fields": {
++      "host": "Qovşaq",
++      "dlSpeed": "Endirmə sürəti",
++      "ulSpeed": "Yükləmə sürəti",
++      "chains": "Zəncirlər",
++      "rule": "Qayda",
++      "process": "Proses",
++      "time": "Vaxt",
++      "source": "Mənbə",
++      "destination": "Təyinat",
++      "destinationPort": "Təyinat portu",
++      "type": "Növ"
++    },
++    "order": {
++      "default": "Standart",
++      "uploadSpeed": "Yükləmə sürəti",
++      "downloadSpeed": "Endirmə sürəti"
++    },
++    "actions": {
++      "active": "Aktiv",
++      "closed": "Bağlanmış",
++      "closeConnection": "Əlaqəni bağla"
++    },
++    "columnManager": {
++      "title": "Sütunlar",
++      "dragHandle": "Sürükləmə tutacağı"
++    }
++  }
++}
+diff --git a/src/locales/az/home.json b/src/locales/az/home.json
+new file mode 100644
+index 00000000..d4c3ae7a
+--- /dev/null
++++ b/src/locales/az/home.json
+@@ -0,0 +1,155 @@
++{
++  "page": {
++    "tooltips": {
++      "lightweightMode": "Yüngül rejim",
++      "manual": "Təlimat",
++      "settings": "Ana səhifə parametrləri"
++    },
++    "cards": {
++      "trafficStats": "Trafik statistikası",
++      "networkSettings": "Şəbəkə parametrləri",
++      "proxyMode": "Proksi rejimi"
++    },
++    "settings": {
++      "cards": {
++        "profile": "Profil kartı",
++        "currentProxy": "Cari proksi kartı",
++        "network": "Şəbəkə parametrləri kartı",
++        "proxyMode": "Proksi rejimi kartı",
++        "traffic": "Trafik statistikası kartı",
++        "tests": "Veb-sayt sınaqları kartı",
++        "ip": "IP məlumatları kartı",
++        "clashInfo": "Clash məlumatları kartları",
++        "systemInfo": "Sistem məlumatları kartları"
++      },
++      "title": "Ana səhifə parametrləri"
++    },
++    "title": "Ana səhifə"
++  },
++  "components": {
++    "proxyTun": {
++      "status": {
++        "systemProxyEnabled": "Sistem proksisi aktivdir",
++        "systemProxyDisabled": "Sistem proksisi söndürülüb",
++        "tunModeServiceRequired": "TUN rejimi üçün xidmət tələb olunur",
++        "tunModeEnabled": "TUN rejimi aktivdir",
++        "tunModeDisabled": "TUN rejimi söndürülüb"
++      },
++      "tooltips": {
++        "systemProxy": "Sistem proksisi haqqında məlumat",
++        "tunMode": "TUN rejimində trafikin tutulması haqqında məlumat"
++      }
++    },
++    "clashInfo": {
++      "title": "Clash məlumatları",
++      "fields": {
++        "coreVersion": "Nüvə versiyası",
++        "systemProxyAddress": "Sistem proksisinin ünvanı",
++        "mixedPort": "Mixed Port",
++        "uptime": "İşləmə müddəti",
++        "rulesCount": "Qayda sayı"
++      }
++    },
++    "systemInfo": {
++      "title": "Sistem məlumatları",
++      "fields": {
++        "osInfo": "Əməliyyat sistemi haqqında məlumat",
++        "autoLaunch": "Avtomatik başlatma",
++        "runningMode": "İş rejimi",
++        "lastCheckUpdate": "Son yeniləmə yoxlaması",
++        "vergeVersion": "Verge versiyası"
++      },
++      "actions": {
++        "settings": "Parametrlər"
++      },
++      "badges": {
++        "adminMode": "İnzibatçı rejimi",
++        "serviceMode": "Xidmət rejimi",
++        "sidecarMode": "İstifadəçi rejimi",
++        "adminServiceMode": "İnzibatçı + xidmət rejimi"
++      }
++    },
++    "ipInfo": {
++      "title": "IP məlumatları",
++      "labels": {
++        "ip": "IP",
++        "asn": "ASN",
++        "isp": "İnternet provayderi",
++        "org": "Təşkilat",
++        "location": "Məkan",
++        "timezone": "Saat qurşağı",
++        "autoRefresh": "Avtomatik yeniləmə",
++        "unknown": "Naməlum"
++      },
++      "errors": {
++        "load": "IP məlumatlarını əldə etmək mümkün olmadı",
++        "loadWithDetails": "IP məlumatlarını əldə etmək mümkün olmadı: {{message}}",
++        "noServices": "IP ünvanını müəyyənləşdirən xidmətlər mövcud deyil"
++      }
++    },
++    "currentProxy": {
++      "title": "Cari qovşaq",
++      "actions": {
++        "refreshDelay": "Gecikməni yoxla"
++      },
++      "labels": {
++        "globalMode": "Qlobal rejim",
++        "directMode": "Birbaşa rejim",
++        "group": "Qrup",
++        "proxy": "Proksi",
++        "noActiveNode": "Aktiv proksi qovşağı yoxdur"
++      },
++      "status": {
++        "testing": "Sınaq aparılır",
++        "untested": "Sınaqdan keçirilməyib",
++        "error": "Xəta",
++        "timeout": "Gözləmə müddəti bitdi",
++        "latencyHigh": "Yüksək gecikmə",
++        "latencyMedium": "Orta gecikmə",
++        "latencyGood": "Yaxşı gecikmə",
++        "latencyExcellent": "Əla gecikmə",
++        "uninitialized": "İşə salınmayıb",
++        "noProxyNode": "Proksi qovşağı yoxdur"
++      }
++    },
++    "tests": {
++      "title": "Veb-sayt sınaqları"
++    },
++    "traffic": {
++      "metrics": {
++        "uploadSpeed": "Yükləmə sürəti",
++        "downloadSpeed": "Endirmə sürəti",
++        "activeConnections": "Aktiv əlaqələr",
++        "memoryUsage": "Nüvənin yaddaş istifadəsi"
++      },
++      "legends": {
++        "upload": "Yükləmə",
++        "download": "Endirmə"
++      },
++      "patterns": {
++        "minutes": "{{time}} dəqiqə"
++      },
++      "unknownTime": "Naməlum vaxt",
++      "chartStyles": {
++        "smooth": "Hamar",
++        "linear": "Xətti"
++      },
++      "diagnostics": "Nöqtələr: {{points}} | Sıxılmış: {{compressed}} | Saniyədə kadr sayı: {{fps}}"
++    },
++    "clashMode": {
++      "errors": {
++        "communication": "Nüvə ilə əlaqə zamanı xəta baş verdi. Kompüterinizi yenidən başladın və bir daha cəhd edin."
++      },
++      "labels": {
++        "rule": "Qayda",
++        "global": "Qlobal",
++        "direct": "Birbaşa"
++      },
++      "descriptions": {
++        "rule": "Qayda dəstinə əsasən proksiləri avtomatik seçir.",
++        "global": "Bütün şəbəkə sorğularını seçilmiş proksi vasitəsilə yönləndirir.",
++        "direct": "Proksidən yan keçərək internetlə birbaşa əlaqə yaradır."
++      }
++    }
++  }
++}
+diff --git a/src/locales/az/layout.json b/src/locales/az/layout.json
+new file mode 100644
+index 00000000..79c1d370
+--- /dev/null
++++ b/src/locales/az/layout.json
+@@ -0,0 +1,59 @@
++{
++  "components": {
++    "navigation": {
++      "tabs": {
++        "home": "Ana səhifə",
++        "proxies": "Proksilər",
++        "profiles": "Profillər",
++        "connections": "Əlaqələr",
++        "rules": "Qaydalar",
++        "logs": "Jurnallar",
++        "unlock": "Sınaq",
++        "settings": "Parametrlər"
++      },
++      "menu": {
++        "reorderMode": "Menyu sırasının dəyişdirilməsi rejimi",
++        "restoreDefaultOrder": "Standart sıranı bərpa et",
++        "unlock": "Menyu sırasının kilidini aç",
++        "lock": "Menyu sırasını kilidlə",
++        "collapseNavBar": "Naviqasiya panelini yığ",
++        "expandNavBar": "Naviqasiya panelini genişləndir"
++      }
++    },
++    "serviceMigration": {
++      "title": "Xidmətin yenilənməsi tələb olunur",
++      "message": "Clash Verge xidmətinin köhnə versiyası aşkarlandı. Hazırkı təhlükəsiz IPC protokolundan istifadə etmək üçün xidməti yenidən quraşdırın və ya bu sessiyada köməkçi proseslə davam edin.",
++      "checkingMessage": "Sistem xidmətinin vəziyyəti və hazırkı iş rejimi yoxlanılır. Zəhmət olmasa, gözləyin…",
++      "unavailableMessage": "Tələb olunan Clash Verge xidməti mövcud deyil. Xidməti quraşdırın və ya təmir edin, yaxud bu sessiyada köməkçi proseslə davam edin.",
++      "reinstall": "Xidməti yenidən quraşdır",
++      "repair": "Xidməti təmir et",
++      "continueSidecar": "Köməkçi proseslə davam et",
++      "success": "Clash Verge xidməti uğurla yeniləndi",
++      "errors": {
++        "actionFailed": "Xidmət əməliyyatı uğursuz oldu",
++        "stateRefreshFailed": "Xidmətin vəziyyətini yeniləmək mümkün olmadı",
++        "restartFailed": "Nüvəni yenidən başlatmaq mümkün olmadı",
++        "revalidationFailed": "İş vəziyyətini yeniləmək mümkün olmadı",
++        "sidecarFailed": "Köməkçi proseslə davam etmək mümkün olmadı"
++      }
++    },
++    "sysproxyPrivilege": {
++      "title": "Sistem proksisini təyin etmək mümkün olmadı",
++      "message": "Səlahiyyətlər yetərli olmadığı üçün macOS dəyişikliyi rədd etdi. Clash Verge xidmətini quraşdırsanız, proksi parametrlərini administrator səlahiyyəti ilə dəyişmək mümkün olacaq və bu bildiriş bir daha görünməyəcək.",
++      "serviceReadyMessage": "Clash Verge xidməti hazırdır, lakin nüvə hələ də köməkçi proses kimi işləyir. Buna görə sistem proksisinin təyin edilməsi rədd edildi. Xidmət rejiminə keçid problemi həll edir. Yenidən quraşdırmağa ehtiyac yoxdur.",
++      "alternative": "Alternativ olaraq, Sistem parametrləri → Məxfilik və təhlükəsizlik → Əlavə bölməsində “sistem üzrə parametrlərə daxil olmaq üçün administrator parolu tələb et” seçimini söndürün.",
++      "later": "Təxirə sal",
++      "installing": "Sistem xidməti quraşdırılır. Administrator parolu tələb oluna bilər.",
++      "restarting": "Xidmət quraşdırıldı. Nüvə xidmət vasitəsilə yenidən başladılır…",
++      "applying": "Sistem proksisinə etdiyiniz dəyişiklik tətbiq olunur…",
++      "tunTitle": "TUN rejimi üçün sistem xidməti tələb olunur",
++      "tunMessage": "TUN rejimində şəbəkə trafikini idarə etmək üçün Clash Verge sistem xidməti lazımdır. Xidmət quraşdırıldıqdan sonra TUN rejimi avtomatik aktivləşdiriləcək."
++    }
++  },
++  "feedback": {
++    "errors": {
++      "restartCoreStopFailed": "Nüvəni təhlükəsiz şəkildə dayandırmaq mümkün olmadığı üçün yenidən başlatma ləğv edildi",
++      "quitCoreStopFailed": "Nüvəni təhlükəsiz şəkildə dayandırmaq mümkün olmadığı üçün çıxış ləğv edildi"
++    }
++  }
++}
+diff --git a/src/locales/az/logs.json b/src/locales/az/logs.json
+new file mode 100644
+index 00000000..2a15fb72
+--- /dev/null
++++ b/src/locales/az/logs.json
+@@ -0,0 +1,9 @@
++{
++  "page": {
++    "title": "Jurnallar"
++  },
++  "actions": {
++    "showDescending": "Ən yeniləri əvvəl göstər",
++    "showAscending": "Ən köhnələri əvvəl göstər"
++  }
++}
+diff --git a/src/locales/az/profiles.json b/src/locales/az/profiles.json
+new file mode 100644
+index 00000000..089c13f9
+--- /dev/null
++++ b/src/locales/az/profiles.json
+@@ -0,0 +1,212 @@
++{
++  "page": {
++    "actions": {
++      "updateAll": "Bütün profilləri yenilə",
++      "viewRuntimeConfig": "Hazırda istifadə olunan konfiqurasiyaya bax",
++      "reactivate": "Profilləri yenidən aktivləşdir",
++      "import": "İdxal et"
++    },
++    "batch": {
++      "actions": {
++        "delete": "Seçilmiş profilləri sil",
++        "selectAll": "Hamısını seç",
++        "deselectAll": "Bütün seçimləri ləğv et",
++        "done": "Tamamla"
++      },
++      "summary": {
++        "selected": "Seçilmiş",
++        "items": "element"
++      },
++      "title": "Toplu əməliyyatlar"
++    },
++    "importForm": {
++      "placeholder": "Profil URL ünvanı",
++      "actions": {
++        "paste": "Yapışdır"
++      }
++    },
++    "feedback": {
++      "errors": {
++        "invalidUrl": "Profil URL ünvanı etibarsızdır. http:// və ya https:// ilə başlayan URL ünvanı daxil edin",
++        "onlyYaml": "Yalnız YAML faylları dəstəklənir",
++        "createFailed": "Profil yaratmaq alınmadı",
++        "deleteFailed": "Profili silmək alınmadı",
++        "enhanceFailed": "Profilləri yenidən aktivləşdirmək alınmadı",
++        "importFailed": "Profili idxal etmək alınmadı",
++        "openFailed": "Profili açmaq alınmadı",
++        "readFailed": "Profili oxumaq alınmadı",
++        "reorderFailed": "Profillərin sırasını dəyişmək alınmadı",
++        "switchFailed": "Profili dəyişmək alınmadı",
++        "updateFailed": "Profili yeniləmək alınmadı"
++      },
++      "notifications": {
++        "importRetry": "İdxal alınmadı, Clash proksisi ilə yenidən cəhd edilir...",
++        "importFail": "Clash proksisi ilə də idxal alınmadı",
++        "importNeedsRefresh": "Profil idxal edildi, lakin əl ilə yeniləmə tələb oluna bilər",
++        "importSuccess": "Profil uğurla idxal edildi. Görünmürsə, tətbiqi yenidən başladın",
++        "profileSwitched": "Profil dəyişdirildi",
++        "profileReactivated": "Profil yenidən aktivləşdirildi",
++        "switchBusy": "Profil artıq dəyişdirilir",
++        "batchDeleted": "Seçilmiş profillər uğurla silindi"
++      },
++      "notices": {
++        "forceRefreshCompleted": "Məcburi yeniləmə tamamlandı",
++        "emergencyRefreshFailed": "Təcili yeniləmə alınmadı: {{message}}"
++      },
++      "tooltips": {
++        "forceRefreshStaleData": "Profil məlumatları əlçatan deyil; məcburi yeniləmək üçün klikləyin"
++      }
++    },
++    "title": "Profillər"
++  },
++  "components": {
++    "card": {
++      "labels": {
++        "clickToImport": "Abunəliyi idxal etmək üçün klikləyin"
++      }
++    },
++    "fileInput": {
++      "chooseFile": "Fayl seç"
++    },
++    "menu": {
++      "home": "Ana səhifə",
++      "select": "Seç",
++      "shareQrCode": "QR kodunu paylaş",
++      "editInfo": "Məlumatı redaktə et",
++      "editFile": "Faylı redaktə et",
++      "editRules": "Qaydaları redaktə et",
++      "editProxies": "Proksiləri redaktə et",
++      "editGroups": "Proksi qruplarını redaktə et",
++      "extendConfig": "Konfiqurasiyanı genişləndir",
++      "extendScript": "Skripti genişləndir",
++      "openFile": "Faylı aç",
++      "update": "Yenilə",
++      "updateViaProxy": "Proksi vasitəsilə yenilə"
++    },
++    "more": {
++      "global": {
++        "merge": "Qlobal konfiqurasiya genişləndirməsi",
++        "script": "Qlobal skript genişləndirməsi"
++      },
++      "chips": {
++        "merge": "Merge",
++        "script": "Script"
++      }
++    },
++    "profileItem": {
++      "tooltips": {
++        "showLast": "Son yeniləmə vaxtını göstərmək üçün klikləyin",
++        "showNext": "Növbəti yeniləməni göstərmək üçün klikləyin"
++      },
++      "status": {
++        "lastUpdateFailed": "Son yeniləmə alınmadı",
++        "nextUp": "Növbəti yeniləmə",
++        "noSchedule": "Cədvəl yoxdur",
++        "unknown": "Naməlum",
++        "autoUpdateDisabled": "Avtomatik yeniləmə söndürülüb"
++      }
++    }
++  },
++  "modals": {
++    "profileForm": {
++      "title": {
++        "create": "Profilin yaradılması",
++        "edit": "Profilin redaktəsi"
++      },
++      "fields": {
++        "type": "Növ",
++        "description": "Təsvir",
++        "subscriptionUrl": "Abunəlik URL ünvanı",
++        "userAgent": "İstifadəçi agenti",
++        "httpTimeout": "HTTP sorğusunun gözləmə müddəti",
++        "updateInterval": "Yeniləmə intervalı",
++        "useSystemProxy": "Sistem proksisindən istifadə",
++        "useClashProxy": "Clash proksisindən istifadə",
++        "acceptInvalidCerts": "Etibarsız sertifikatlara icazə (təhlükəli)",
++        "allowAutoUpdate": "Avtomatik yeniləməyə icazə"
++      },
++      "types": {
++        "remote": "Uzaq",
++        "local": "Yerli"
++      },
++      "errors": {
++        "typeRequired": "Profil növünü seçin",
++        "urlRequired": "Abunəlik URL ünvanını daxil edin",
++        "uidMissing": "Profil identifikatoru yoxdur",
++        "saveFailed": "Profili yadda saxlamaq alınmadı"
++      },
++      "warnings": {
++        "frequentUpdate": "Yeniləmə intervalı qısa olduqda nüvə tez-tez yenidən yüklənir və mövcud əlaqələr kəsilir. İntervalı {{minutes}} dəqiqə (24 saat) təyin etmək tövsiyə olunur."
++      },
++      "feedback": {
++        "notifications": {
++          "creationRetry": "Profil yaratmaq alınmadı, Clash proksisi ilə yenidən cəhd edilir...",
++          "creationSuccess": "Profil Clash proksisi ilə uğurla yaradıldı"
++        }
++      }
++    },
++    "proxiesEditor": {
++      "title": "Proksilərin redaktəsi",
++      "placeholders": {
++        "multiUri": "Bir neçə URI ünvanını ayrı sətirlərdə yazın (Base64 kodlaşdırması dəstəklənir)"
++      },
++      "actions": {
++        "prepend": "Əvvələ proksi əlavə et",
++        "append": "Sona proksi əlavə et"
++      }
++    },
++    "groupsEditor": {
++      "title": "Proksi qruplarının redaktəsi",
++      "errors": {
++        "nameRequired": "Qrup adı tələb olunur",
++        "nameExists": "Bu adda qrup artıq mövcuddur"
++      },
++      "fields": {
++        "type": "Qrup növü",
++        "name": "Qrup adı",
++        "icon": "Proksi qrupunun nişanı",
++        "proxies": "Proksilərdən istifadə",
++        "provider": "Provayderdən istifadə",
++        "healthCheckUrl": "İşləkliyin yoxlanılması üçün URL ünvanı",
++        "expectedStatus": "Gözlənilən vəziyyət",
++        "interval": "İnterval",
++        "maxFailedTimes": "Maksimum uğursuz cəhd sayı",
++        "interfaceName": "İnterfeys adı",
++        "routingMark": "Marşrutlaşdırma nişanı",
++        "filter": "Süzgəc",
++        "excludeFilter": "İstisna süzgəci",
++        "excludeType": "İstisna edilən növ",
++        "includeAll": "Bütün proksilərin və provayderlərin daxil edilməsi",
++        "includeAllProxies": "Bütün proksilərin daxil edilməsi",
++        "includeAllProviders": "Bütün provayderlərin daxil edilməsi"
++      },
++      "toggles": {
++        "lazy": "Ehtiyac olduqda yoxlama",
++        "disableUdp": "UDP-nin söndürülməsi",
++        "hidden": "Gizli"
++      },
++      "actions": {
++        "prepend": "Əvvələ qrup əlavə et",
++        "append": "Sona qrup əlavə et"
++      }
++    },
++    "editor": {
++      "actions": {
++        "format": "Sənədi formatla"
++      },
++      "messages": {
++        "readOnly": "Yalnız oxuma rejimində olan redaktorda dəyişiklik etmək mümkün deyil"
++      }
++    },
++    "confirmDelete": {
++      "title": "Silinmənin təsdiqi",
++      "message": "Bu əməliyyatı geri qaytarmaq mümkün deyil"
++    },
++    "logViewer": {
++      "title": "Skript konsolu"
++    },
++    "qrViewer": {
++      "title": "Abunəlik QR kodu"
++    }
++  }
++}
+diff --git a/src/locales/az/proxies.json b/src/locales/az/proxies.json
+new file mode 100644
+index 00000000..67761114
+--- /dev/null
++++ b/src/locales/az/proxies.json
+@@ -0,0 +1,119 @@
++{
++  "page": {
++    "modes": {
++      "rule": "Qayda",
++      "global": "Qlobal",
++      "direct": "Birbaşa"
++    },
++    "actions": {
++      "toggleChain": "Proksi zənciri rejimini dəyiş",
++      "connect": "Əlaqə yarat",
++      "disconnect": "Əlaqəni kəs",
++      "connecting": "Əlaqə yaradılır...",
++      "clearChainConfig": "Zəncir konfiqurasiyasını sil"
++    },
++    "provider": {
++      "title": "Proksi provayderi",
++      "actions": {
++        "updateAll": "Hamısını yenilə",
++        "update": "Yenilə"
++      }
++    },
++    "rules": {
++      "title": "Proksi qaydaları",
++      "select": "Qaydaları seç"
++    },
++    "labels": {
++      "proxyCount": "Proksi sayı",
++      "delayCheckReset": "Sabitləməni ləğv etmək üçün gecikməni yoxla",
++      "nodeCount": "{{count}} qovşaq"
++    },
++    "tooltips": {
++      "locate": "Yerini tap",
++      "delayCheck": "Gecikməni yoxla",
++      "sortDefault": "Standart qaydada sırala",
++      "sortDelay": "Gecikməyə görə sırala",
++      "sortName": "Ada görə sırala",
++      "delayCheckUrl": "Gecikmə yoxlaması üçün URL",
++      "showBasic": "Proksinin əsas məlumatlarını göstər",
++      "showDetail": "Proksinin ətraflı məlumatlarını göstər",
++      "filter": "Süzgəc"
++    },
++    "placeholders": {
++      "delayCheckUrl": "Gecikmə yoxlaması üçün URL"
++    },
++    "empty": {
++      "noAvailableGroups": "Mövcud proksi qrupu yoxdur",
++      "noProxies": "Proksi yoxdur",
++      "noSubscriptions": {
++        "title": "Abunəlik idxal edilməyib",
++        "description": "Proksilər səhifəsində göstəriləcək heç nə yoxdur. Abunəliyi idxal etmək və aktivləşdirmək üçün Profillər bölməsinə keçin."
++      },
++      "inactiveSubscription": {
++        "title": "Aktiv abunəlik yoxdur",
++        "description": "Abunəliklər tapıldı, lakin hazırda heç biri aktiv deyil. Profillər bölməsinə keçin və aktivləşdirmək üçün birini seçin."
++      },
++      "coreUnavailable": {
++        "title": "Nüvə müvəqqəti olaraq əlçatan deyil",
++        "description": "Nüvədən proksi məlumatlarını əldə etmək mümkün olmadı. Nüvəni yenidən başlatmağa cəhd edin. Problem davam edərsə, jurnallar qovluğunu açın və nüvə jurnallarını yoxlayın."
++      },
++      "noProxyInfo": {
++        "title": "Proksi məlumatları yoxdur",
++        "description": "Göstəriləcək proksi qrupları və ya qovşaqları yoxdur. Aktiv abunəlikdə etibarlı proksi qrupları və qovşaqlarının olduğunu yoxlayın və ya nüvəni yenidən başladıb jurnalları nəzərdən keçirin."
++      },
++      "actions": {
++        "openProfiles": "Profillərə keç",
++        "restartCore": "Nüvəni yenidən başlat",
++        "openLogs": "Jurnallar qovluğunu aç"
++      }
++    },
++    "chain": {
++      "header": "Proksi zəncirinin konfiqurasiyası",
++      "warning": "Proksi zənciri şəbəkə sürətini xeyli azaldacaq. İşiniz üçün zəruri deyilsə və ya bu konfiqurasiyanı başa düşmürsünüzsə, proksi zəncirini aktivləşdirməyin.",
++      "empty": "Proksi zənciri şəbəkə sürətini xeyli azaldacaq. İşiniz üçün zəruri deyilsə və ya bu konfiqurasiyanı başa düşmürsünüzsə, proksi zəncirini aktivləşdirməyin.",
++      "instruction": "Proksi zəncirinə əlavə etmək üçün qovşaqlara ardıcıllıqla klikləyin",
++      "minimumNodes": "Proksi zənciri üçün ən azı 2 qovşaq tələb olunur",
++      "minimumNodesHint": "Proksi zənciri üçün ən azı 2 qovşaq tələb olunur. Daha bir qovşaq əlavə edin.",
++      "connectFailed": "Proksi zənciri ilə əlaqə yaratmaq mümkün olmadı",
++      "disconnectFailed": "Proksi zənciri ilə əlaqəni kəsmək mümkün olmadı",
++      "duplicateNode": "Proksi qovşağı artıq zəncirdə mövcuddur",
++      "entryNode": "Giriş",
++      "exitNode": "Çıxış"
++    },
++    "messages": {
++      "directMode": "Birbaşa rejim"
++    },
++    "title": {
++      "default": "Proksi qrupları",
++      "chainMode": "Proksi zənciri rejimi"
++    }
++  },
++  "feedback": {
++    "notifications": {
++      "provider": {
++        "updateSuccess": "{{name}} uğurla yeniləndi",
++        "updateFailed": "{{name}} yenilənə bilmədi: {{message}}",
++        "genericError": "Yeniləmə alınmadı: {{message}}",
++        "none": "Yenilənəcək provayder yoxdur",
++        "allUpdated": "Bütün provayderlər uğurla yeniləndi"
++      }
++    }
++  },
++  "components": {
++    "enums": {
++      "strategies": {
++        "select": "Proksini əl ilə seçir",
++        "url-test": "URL sınağının gecikməsinə əsasən proksi seçir",
++        "fallback": "Xəta baş verdikdə başqa proksiyə keçir",
++        "load-balance": "Yükü tarazlaşdırmaq üçün trafiki proksilər arasında bölüşdürür",
++        "relay": "Müəyyən edilmiş proksi zəncirindən keçir"
++      },
++      "policies": {
++        "DIRECT": "Məlumatları birbaşa göndərir",
++        "REJECT": "Sorğuları rədd edir",
++        "REJECT-DROP": "Sorğuları cavab vermədən rədd edir",
++        "PASS": "Uyğunluq olduqda bu qaydadan yan keçir"
++      }
++    }
++  }
++}
+diff --git a/src/locales/az/rules.json b/src/locales/az/rules.json
+new file mode 100644
+index 00000000..fa12b73d
+--- /dev/null
++++ b/src/locales/az/rules.json
+@@ -0,0 +1,82 @@
++{
++  "page": {
++    "provider": {
++      "trigger": "Qayda provayderi",
++      "dialogTitle": "Qayda provayderləri",
++      "actions": {
++        "updateAll": "Hamısını yenilə",
++        "update": "Yenilə"
++      }
++    },
++    "title": "Qaydalar"
++  },
++  "feedback": {
++    "notifications": {
++      "provider": {
++        "updateSuccess": "{{name}} uğurla yeniləndi",
++        "updateFailed": "{{name}} yenilənə bilmədi: {{message}}",
++        "genericError": "Yeniləmə alınmadı: {{message}}",
++        "none": "Yenilənəcək provayder yoxdur",
++        "allUpdated": "Bütün provayderlər uğurla yeniləndi"
++      }
++    }
++  },
++  "modals": {
++    "editor": {
++      "form": {
++        "labels": {
++          "type": "Qayda növü",
++          "content": "Qayda məzmunu",
++          "proxyPolicy": "Proksi siyasəti"
++        },
++        "toggles": {
++          "noResolve": "DNS həllinin söndürülməsi"
++        },
++        "actions": {
++          "prependRule": "Əvvələ qayda əlavə et",
++          "appendRule": "Sona qayda əlavə et"
++        },
++        "validation": {
++          "conditionRequired": "Qayda şərti tələb olunur",
++          "invalidRule": "Yanlış qayda"
++        }
++      },
++      "ruleTypes": {
++        "DOMAIN": "Tam domenə görə uyğunluq",
++        "DOMAIN-SUFFIX": "Domen sonluğuna görə uyğunluq",
++        "DOMAIN-KEYWORD": "Domendəki açar sözə görə uyğunluq",
++        "DOMAIN-REGEX": "Domenin müntəzəm ifadəyə uyğunluğu",
++        "GEOSITE": "GeoSite daxilindəki domenlərə görə uyğunluq",
++        "GEOIP": "IP ünvanının ölkə koduna görə uyğunluq",
++        "SRC-GEOIP": "Mənbə IP ünvanının ölkə koduna görə uyğunluq",
++        "IP-ASN": "IP ünvanının ASN dəyərinə görə uyğunluq",
++        "SRC-IP-ASN": "Mənbə IP ünvanının ASN dəyərinə görə uyğunluq",
++        "IP-CIDR": "IP ünvanları aralığına görə uyğunluq",
++        "IP-CIDR6": "IPv6 ünvanları aralığına görə uyğunluq",
++        "SRC-IP-CIDR": "Mənbə IP ünvanları aralığına görə uyğunluq",
++        "IP-SUFFIX": "IP ünvanlarının sonluq aralığına görə uyğunluq",
++        "SRC-IP-SUFFIX": "Mənbə IP ünvanlarının sonluq aralığına görə uyğunluq",
++        "SRC-PORT": "Mənbə portları aralığına görə uyğunluq",
++        "DST-PORT": "Təyinat portları aralığına görə uyğunluq",
++        "IN-PORT": "Daxil olan əlaqənin portuna görə uyğunluq",
++        "DSCP": "DSCP etiketi (yalnız TPROXY ilə daxil olan UDP trafiki üçün)",
++        "PROCESS-NAME": "Prosesin adına görə uyğunluq",
++        "PROCESS-PATH": "Prosesin tam yoluna görə uyğunluq",
++        "PROCESS-NAME-REGEX": "Prosesin adının müntəzəm ifadəyə uyğunluğu",
++        "PROCESS-PATH-REGEX": "Prosesin tam yolunun müntəzəm ifadəyə uyğunluğu",
++        "NETWORK": "Şəbəkə protokoluna görə uyğunluq (TCP/UDP)",
++        "UID": "Linux istifadəçisinin identifikatoruna görə uyğunluq",
++        "IN-TYPE": "Daxil olan əlaqənin növünə görə uyğunluq",
++        "IN-USER": "Daxil olan əlaqənin istifadəçi adına görə uyğunluq",
++        "IN-NAME": "Daxil olan əlaqənin adına görə uyğunluq",
++        "SUB-RULE": "Alt qayda",
++        "RULE-SET": "Qayda dəstinə görə uyğunluq",
++        "AND": "Məntiqi və",
++        "OR": "Məntiqi və ya",
++        "NOT": "Məntiqi inkar",
++        "MATCH": "Bütün sorğulara uyğunluq"
++      },
++      "title": "Qaydaların redaktəsi"
++    }
++  }
++}
+diff --git a/src/locales/az/settings.json b/src/locales/az/settings.json
+new file mode 100644
+index 00000000..0017a84e
+--- /dev/null
++++ b/src/locales/az/settings.json
+@@ -0,0 +1,704 @@
++{
++  "page": {
++    "actions": {
++      "manual": "Təlimat",
++      "telegram": "Telegram kanalı",
++      "github": "GitHub repozitoriyası"
++    },
++    "actionsGroupLabel": "Parametrlərə aid keçidlər",
++    "title": "Parametrlər"
++  },
++  "sections": {
++    "system": {
++      "title": "Sistem parametrləri",
++      "toggles": {
++        "tunMode": "TUN rejimi",
++        "systemProxy": "Sistem proksisi"
++      },
++      "tooltips": {
++        "silentStart": "Proqramı paneli göstərmədən arxa planda başladır"
++      },
++      "fields": {
++        "autoLaunch": "Avtomatik başlatma",
++        "silentStart": "Səssiz başlatma"
++      },
++      "notifications": {
++        "tunMode": {
++          "autoDisabled": "Xidmət əlçatan olmadığı üçün TUN rejimi avtomatik söndürüldü",
++          "autoDisableFailed": "TUN rejimini avtomatik söndürmək mümkün olmadı"
++        }
++      }
++    },
++    "proxyControl": {
++      "tooltips": {
++        "systemProxy": "Əməliyyat sisteminin proksi parametrlərini dəyişmək üçün aktivləşdirin. Aktivləşdirmək mümkün olmazsa, əməliyyat sisteminin proksi parametrlərini əl ilə dəyişin",
++        "tunMode": "TUN (virtual şəbəkə kartı) rejimi: bütün sistem trafikini tutur, aktivləşdirildikdə sistem proksisini aktivləşdirməyə ehtiyac qalmır.",
++        "tunUnavailable": "TUN üçün xidmət rejimi və ya inzibatçı rejimi tələb olunur"
++      },
++      "actions": {
++        "installService": "Xidməti quraşdır",
++        "uninstallService": "Xidməti sil",
++        "switchToServiceMode": "Xidmət rejiminə keç"
++      },
++      "fields": {
++        "systemProxy": "Sistem proksisi",
++        "tunMode": "TUN rejimi"
++      },
++      "messages": {
++        "installedCheckProxy": "Xidmət quraşdırılıb və nüvə onun vasitəsilə işləyir. Sistem proksisinin açarını yoxlayın və dəyişiklik qüvvəyə minməyibsə, onu yenidən edin.",
++        "installedCoreNotOnService": "Xidmət quraşdırılıb, lakin nüvə onun vasitəsilə işləmir. Nüvəni yoxlayın və yenidən cəhd edin.",
++        "installedProxyRestored": "Xidmət quraşdırılıb, nüvə onun vasitəsilə işləyir və sistem proksisində etdiyiniz dəyişiklik tətbiq olunub."
++      }
++    },
++    "externalController": {
++      "title": "Xarici idarəetmə qurğusu",
++      "fields": {
++        "enable": "Xarici idarəetmə qurğusunun aktivləşdirilməsi",
++        "address": "Xarici idarəetmə qurğusu",
++        "secret": "Nüvənin məxfi açarı"
++      },
++      "placeholders": {
++        "address": "Tələb olunur",
++        "secret": "Tövsiyə olunur"
++      },
++      "tooltips": {
++        "copy": "Mübadilə buferinə kopyala"
++      },
++      "messages": {
++        "addressRequired": "İdarəetmə qurğusunun ünvanı boş ola bilməz",
++        "secretRequired": "Məxfi açar boş ola bilməz",
++        "copyFailed": "Kopyalamaq mümkün olmadı",
++        "controllerCopied": "İdarəetmə qurğusunun ünvanı mübadilə buferinə kopyalandı",
++        "secretCopied": "Məxfi açar mübadilə buferinə kopyalandı"
++      }
++    },
++    "externalCors": {
++      "title": "Xarici mənbələrarası resurs paylaşımı konfiqurasiyası",
++      "fields": {
++        "allowPrivateNetwork": "Özəl şəbəkəyə giriş icazəsi",
++        "allowedOrigins": "İcazə verilən mənbələr"
++      },
++      "placeholders": {
++        "origin": "Etibarlı URL daxil edin"
++      },
++      "actions": {
++        "add": "Əlavə et"
++      },
++      "messages": {
++        "alwaysIncluded": "Həmişə daxil edilən mənbələr: {{urls}}"
++      },
++      "tooltips": {
++        "open": "Xarici mənbələrarası resurs paylaşımı parametrləri"
++      }
++    },
++    "appearance": {
++      "light": "Açıq",
++      "dark": "Tünd",
++      "system": "Sistem"
++    },
++    "clash": {
++      "title": "Clash parametrləri",
++      "form": {
++        "fields": {
++          "allowLan": "Yerli şəbəkədən giriş icazəsi",
++          "dnsOverwrite": "DNS parametrlərinin əvəzlənməsi",
++          "ipv6": "IPv6",
++          "unifiedDelay": "Vahid gecikmə",
++          "logLevel": "Jurnal səviyyəsi",
++          "portConfig": "Port konfiqurasiyası",
++          "external": "Xarici",
++          "webUI": "Veb interfeysi",
++          "clashCore": "Clash nüvəsi",
++          "openUwpTool": "Universal Windows Platforması alətini aç",
++          "updateGeoData": "Coğrafi məlumatları yenilə",
++          "tunnels": {
++            "title": "Tunel idarəetməsi",
++            "localAddr": "Yerli dinləmə ünvanı",
++            "localPort": "Yerli dinləmə portu",
++            "targetAddr": "Hədəf ünvanı",
++            "targetPort": "Hədəf portu",
++            "proxyGroup": "Proksi qrupu",
++            "proxyNode": "Proksi qovşağı",
++            "protocols": "Protokol",
++            "existing": "Mövcud tunellər",
++            "default": "Cari konfiqurasiyaya uyğun",
++            "optional": "İstəyə bağlı",
++            "messages": {
++              "incomplete": "Bütün məcburi tunel sahələrini doldurun",
++              "invalidLocalAddr": "Yerli dinləmə ünvanı etibarsızdır",
++              "invalidLocalPort": "Yerli dinləmə portu etibarsızdır",
++              "invalidTargetAddr": "Hədəf ünvanı etibarsızdır",
++              "invalidTargetPort": "Hədəf portu etibarsızdır"
++            },
++            "actions": {
++              "add": "Əlavə et",
++              "addNew": "Yeni tunel əlavə et"
++            }
++          }
++        },
++        "tooltips": {
++          "networkInterface": "Şəbəkə interfeysi",
++          "unifiedDelay": "Vahid gecikmə aktivləşdirildikdə iki gecikmə sınağı aparılır. Bu, əlaqənin qurulması və digər səbəblərdən müxtəlif növ qovşaqlar arasında yaranan gecikmə fərqlərini aradan qaldırır",
++          "logLevel": "Bu parametr yalnız jurnal qovluğunun xidmət alt qovluğundakı nüvə jurnal faylları üçün keçərlidir",
++          "openUwpTool": "Windows 8-dən etibarən Universal Windows Platforması tətbiqlərinin (məsələn, Microsoft Store) yerli kompüterin şəbəkə xidmətlərinə birbaşa girişi məhdudlaşdırılıb və bu alətlə həmin məhdudiyyəti aradan qaldırmaq olar"
++        },
++        "options": {
++          "logLevel": {
++            "debug": "Sazlama",
++            "info": "Məlumat",
++            "warning": "Xəbərdarlıq",
++            "error": "Xəta",
++            "silent": "Səssiz"
++          }
++        }
++      }
++    }
++  },
++  "components": {
++    "verge": {
++      "basic": {
++        "title": "Verge əsas parametrləri",
++        "actions": {
++          "browse": "Gözdən keçir"
++        },
++        "trayOptions": {
++          "showMainWindow": "Əsas pəncərəni göstər",
++          "showTrayMenu": "Bildiriş sahəsinin menyusunu göstər",
++          "disable": "Söndür"
++        },
++        "fields": {
++          "language": "Dil",
++          "themeMode": "Tema rejimi",
++          "trayClickEvent": "Bildiriş sahəsindəki nişana klik əməliyyatı",
++          "copyEnvType": "Mühit dəyişənlərini kopyalama növü",
++          "startPage": "Başlanğıc səhifəsi",
++          "startupScript": "Başlanğıc skripti",
++          "themeSetting": "Tema parametrləri",
++          "layoutSetting": "Düzülüş parametrləri",
++          "misc": "Digər",
++          "hotkeySetting": "Qısayol parametrləri"
++        }
++      },
++      "advanced": {
++        "title": "Verge genişləndirilmiş parametrləri",
++        "tooltips": {
++          "backupInfo": "Konfiqurasiya fayllarının ehtiyat nüsxəsini cihazda və ya WebDAV serverində saxlamaq olar",
++          "openConfDir": "Proqram düzgün işləmirsə, bu qovluqdakı bütün faylların ehtiyat nüsxəsini yaradın və onları silin, sonra proqramı yenidən başladın",
++          "liteMode": "Qrafik interfeysi bağlayır, yalnız nüvə işləməyə davam edir"
++        },
++        "actions": {
++          "copyVersion": "Versiyanı kopyala"
++        },
++        "notifications": {
++          "latestVersion": "Hazırda ən son versiyadan istifadə olunur",
++          "versionCopied": "Versiya mübadilə buferinə kopyalandı"
++        },
++        "fields": {
++          "backupSetting": "Ehtiyat nüsxə parametrləri",
++          "runtimeConfig": "İstifadə olunan konfiqurasiya",
++          "openConfDir": "Konfiqurasiya qovluğunu aç",
++          "openCoreDir": "Nüvə qovluğunu aç",
++          "openLogsDir": "Jurnal qovluğunu aç",
++          "checkUpdates": "Yeniləmələri yoxla",
++          "openDevTools": "Tərtibatçı alətləri",
++          "liteModeSettings": "Yüngül rejim parametrləri",
++          "exit": "Çıx",
++          "exportDiagnostics": "Diaqnostika məlumatlarını ixrac et",
++          "vergeVersion": "Verge versiyası"
++        }
++      },
++      "theme": {
++        "title": "Tema parametrləri",
++        "fields": {
++          "primaryColor": "Əsas rəng",
++          "secondaryColor": "İkinci dərəcəli rəng",
++          "primaryText": "Əsas mətn",
++          "secondaryText": "İkinci dərəcəli mətn",
++          "infoColor": "Məlumat rəngi",
++          "warningColor": "Xəbərdarlıq rəngi",
++          "errorColor": "Xəta rəngi",
++          "successColor": "Uğur rəngi",
++          "fontFamily": "Şrift ailəsi",
++          "cssInjection": "Kaskad üslub cədvəllərinin əlavə edilməsi"
++        },
++        "actions": {
++          "editCss": "Kaskad üslub cədvəllərini redaktə et"
++        },
++        "dialogs": {
++          "editCssTitle": "Kaskad üslub cədvəllərinin redaktəsi"
++        }
++      },
++      "layout": {
++        "title": "Düzülüş parametrləri",
++        "fields": {
++          "preferSystemTitlebar": "Sistemin başlıq sətrindən istifadə",
++          "trafficGraph": "Trafik qrafiki",
++          "memoryUsage": "Nüvənin resurs istifadəsi",
++          "proxyGroupIcon": "Proksi qrupu nişanı",
++          "toastPosition": "Bildiriş mövqeyi",
++          "hoverNavigator": "Kursorla qruplar arasında keçid",
++          "hoverNavigatorDelay": "Kursorla qruplar arasında keçid gecikməsi",
++          "navIcon": "Naviqasiya nişanı",
++          "collapseNavBar": "Naviqasiya panelinin yığılması",
++          "trayIcon": "Bildiriş sahəsi nişanı",
++          "proxyGroupsDisplayMode": "Proksi qruplarının göstərilmə rejimi",
++          "showOutboundModesInline": "Çıxış rejimlərinin eyni sətirdə göstərilməsi",
++          "commonTrayIcon": "Bildiriş sahəsinin ümumi nişanı",
++          "systemProxyTrayIcon": "Sistem proksisinin bildiriş sahəsindəki nişanı",
++          "tunTrayIcon": "TUN rejiminin bildiriş sahəsindəki nişanı",
++          "enableTrayIcon": "Bildiriş sahəsi nişanının aktivləşdirilməsi",
++          "enableTraySpeed": "Bildiriş sahəsində sürət göstəricisinin aktivləşdirilməsi",
++          "pauseRenderTrafficStatsOnBlur": "Pəncərə aktiv olmadıqda trafik statistikasının göstərilməsinin dayandırılması"
++        },
++        "tooltips": {
++          "hoverNavigator": "Kursoru əlifba hərflərinin üzərinə gətirdikdə müvafiq proksi qrupuna avtomatik keçir",
++          "hoverNavigatorDelay": "Kursor hərfin üzərinə gətirildikdən sonra avtomatik keçidədək gözləmə müddəti, millisaniyə ilə"
++        },
++        "options": {
++          "icon": {
++            "monochrome": "Təkrəngli",
++            "colorful": "Rəngli",
++            "disable": "Söndür"
++          },
++          "toastPosition": {
++            "topLeft": "Yuxarı sol",
++            "topRight": "Yuxarı sağ",
++            "bottomLeft": "Aşağı sol",
++            "bottomRight": "Aşağı sağ"
++          },
++          "proxyGroupsDisplayMode": {
++            "default": "Standart",
++            "inline": "Eyni sətirdə",
++            "disable": "Söndür"
++          }
++        }
++      }
++    }
++  },
++  "modals": {
++    "clashPort": {
++      "title": "Port konfiqurasiyası",
++      "fields": {
++        "mixed": "Mixed Port",
++        "socks": "SOCKS portu",
++        "http": "HTTP(S) portu",
++        "redir": "Yönləndirmə portu",
++        "tproxy": "Şəffaf proksi portu"
++      },
++      "actions": {
++        "random": "Təsadüfi port seç"
++      },
++      "messages": {
++        "portInUse": "{{port}} portu artıq istifadə olunur",
++        "saved": "Port parametrləri yadda saxlanıldı",
++        "saveFailed": "Port parametrlərini yadda saxlamaq mümkün olmadı",
++        "automaticFallback": "{{oldPort}} portu istifadə olunduğu üçün bu sessiya {{newPort}} portunda işləyir. Parametriniz dəyişməyib və növbəti başlatmada {{oldPort}} portu yenidən sınanacaq.",
++        "automaticFallbackFailed": "Mixed Port üçün avtomatik ehtiyat porta keçid baş tutmadı: {{error}}",
++        "portTooLow": "Port ən azı 1000 olmalıdır",
++        "portTooHigh": "Port ən çoxu 65535 olmalıdır"
++      }
++    },
++    "clashCore": {
++      "variants": {
++        "release": "Buraxılış versiyası",
++        "alpha": "Alfa versiyası"
++      }
++    },
++    "liteMode": {
++      "title": "Yüngül rejim parametrləri",
++      "actions": {
++        "enterNow": "İndi yüngül rejimə keç"
++      },
++      "toggles": {
++        "autoEnter": "Yüngül rejimə avtomatik keçid"
++      },
++      "tooltips": {
++        "autoEnter": "Bu seçim aktiv olduqda pəncərə bağlandıqdan müəyyən müddət sonra yüngül rejimə avtomatik keçilir"
++      },
++      "fields": {
++        "delay": "Yüngül rejimə avtomatik keçid gecikməsi"
++      },
++      "messages": {
++        "autoEnterHint": "Pəncərə bağlandıqdan {{n}} dəqiqə sonra yüngül rejim avtomatik aktivləşəcək"
++      }
++    },
++    "backup": {
++      "title": "Ehtiyat nüsxə parametrləri",
++      "tabs": {
++        "local": "Yerli ehtiyat nüsxə",
++        "webdav": "WebDAV ehtiyat nüsxəsi"
++      },
++      "actions": {
++        "selectTarget": "Ehtiyat nüsxə üçün hədəf seç",
++        "backup": "Ehtiyat nüsxə yarat",
++        "export": "İxrac et",
++        "exportBackup": "Ehtiyat nüsxəni ixrac et",
++        "importBackup": "Ehtiyat nüsxəni idxal et",
++        "deleteBackup": "Ehtiyat nüsxəni sil",
++        "restore": "Bərpa et",
++        "restoreBackup": "Ehtiyat nüsxəni bərpa et",
++        "viewHistory": "Tarixçəyə bax"
++      },
++      "fields": {
++        "webdavUrl": "WebDAV serverinin URL ünvanı",
++        "username": "İstifadəçi adı",
++        "info": "Ehtiyat nüsxələr tətbiqin məlumat qovluğunda yerli olaraq saxlanılır. Ehtiyat nüsxələri bərpa etmək və ya silmək üçün aşağıdakı siyahıdan istifadə edin."
++      },
++      "messages": {
++        "webdavUrlRequired": "WebDAV URL ünvanı boş ola bilməz",
++        "invalidWebdavUrl": "WebDAV URL ünvanının formatı yanlışdır",
++        "usernameRequired": "İstifadəçi adı boş ola bilməz",
++        "passwordRequired": "Şifrə boş ola bilməz",
++        "webdavConfigSaved": "WebDAV konfiqurasiyası uğurla yadda saxlanıldı",
++        "webdavConfigSaveFailed": "WebDAV konfiqurasiyasını yadda saxlamaq mümkün olmadı: {{error}}",
++        "backupCreated": "Ehtiyat nüsxə uğurla yaradıldı",
++        "backupFailed": "Ehtiyat nüsxəni yaratmaq mümkün olmadı: {{error}}",
++        "localBackupCreated": "Yerli ehtiyat nüsxə uğurla yaradıldı",
++        "localBackupFailed": "Yerli ehtiyat nüsxəni yaratmaq mümkün olmadı",
++        "restoreSuccess": "Bərpa uğurla tamamlandı, tətbiq 1 saniyə sonra yenidən başladılacaq",
++        "localBackupExported": "Yerli ehtiyat nüsxə uğurla ixrac edildi",
++        "localBackupExportFailed": "Yerli ehtiyat nüsxəni ixrac etmək mümkün olmadı",
++        "localBackupImported": "Yerli ehtiyat nüsxə uğurla idxal edildi",
++        "localBackupImportFailed": "Yerli ehtiyat nüsxəni idxal etmək mümkün olmadı: {{error}}",
++        "webdavRefreshSuccess": "WebDAV uğurla yeniləndi",
++        "webdavRefreshFailed": "WebDAV yenilənmədi: {{error}}",
++        "confirmDelete": "Bu ehtiyat nüsxə faylını silmək istədiyinizə əminsiniz?",
++        "confirmRestore": "Bu ehtiyat nüsxə faylını bərpa etmək istədiyinizə əminsiniz?"
++      },
++      "auto": {
++        "title": "Avtomatik ehtiyat nüsxə",
++        "scheduleLabel": "Plan üzrə ehtiyat nüsxə yaradılması",
++        "scheduleHelper": "Təyin edilmiş aralıqlarla arxa planda yerli ehtiyat nüsxələr yaradır.",
++        "intervalLabel": "Ehtiyat nüsxə yaratma tezliyi",
++        "changeLabel": "Mühüm dəyişikliklər zamanı ehtiyat nüsxə",
++        "changeHelper": "Qlobal genişləndirmə konfiqurasiyası və ya skripti dəyişdikdə avtomatik ehtiyat nüsxə yaradır.",
++        "options": {
++          "hours": "Hər {{n}} saatdan bir",
++          "days": "Hər {{n}} gündən bir"
++        }
++      },
++      "manual": {
++        "title": "Əl ilə ehtiyat nüsxə yaratma",
++        "local": "Bu cihazda cari vəziyyətin nüsxəsini yaradır və tətbiqin məlumat qovluğunda saxlayır.",
++        "webdav": "Giriş məlumatlarını təyin etdikdən sonra cari vəziyyətin nüsxəsini WebDAV serverinizə yükləyin.",
++        "configureWebdav": "WebDAV parametrlərini qur"
++      },
++      "history": {
++        "title": "Ehtiyat nüsxə tarixçəsi",
++        "summary": "{{count}} ehtiyat nüsxə • ən son {{recent}}",
++        "empty": "Ehtiyat nüsxə yoxdur",
++        "unknownPlatform": "Naməlum",
++        "unknownTime": "Naməlum vaxt"
++      },
++      "webdav": {
++        "title": "WebDAV parametrləri"
++      },
++      "table": {
++        "filename": "Fayl adı",
++        "backupTime": "Ehtiyat nüsxə vaxtı",
++        "actions": "Əməliyyatlar",
++        "noBackups": "Ehtiyat nüsxə yoxdur",
++        "rowsPerPage": "Səhifədəki sətir sayı"
++      }
++    },
++    "misc": {
++      "title": "Digər",
++      "fields": {
++        "appLogLevel": "Tətbiq jurnalının səviyyəsi",
++        "appLogMaxSize": "Tətbiq jurnalının maksimum ölçüsü",
++        "appLogMaxCount": "Tətbiq jurnallarının maksimum sayı",
++        "autoCloseConnections": "Əlaqələrin avtomatik bağlanması",
++        "autoCheckUpdate": "Yeniləmələrin avtomatik yoxlanması",
++        "enableBuiltinEnhanced": "Daxili təkmilləşdirmənin aktivləşdirilməsi",
++        "proxyLayoutColumns": "Proksi düzülüşünün sütunları",
++        "autoLogClean": "Jurnalların avtomatik təmizlənməsi",
++        "autoDelayDetection": "Gecikmənin avtomatik aşkarlanması",
++        "autoDelayDetectionInterval": "Gecikmənin avtomatik aşkarlanma intervalı",
++        "defaultLatencyTest": "Standart gecikmə sınağı",
++        "defaultLatencyTimeout": "Standart gecikmə sınağının gözləmə müddəti"
++      },
++      "tooltips": {
++        "autoCloseConnections": "Seçilmiş proksi qrupu və ya proksi rejimi dəyişdikdə qurulmuş əlaqələri bağlayır",
++        "enableBuiltinEnhanced": "Konfiqurasiya faylının uyğunluğunun təmin edilməsi",
++        "autoDelayDetection": "Cari qovşağın gecikməsini arxa planda müntəzəm olaraq ölçür",
++        "defaultLatencyTest": "Yalnız HTTP müştəri sorğularının sınağı üçün istifadə olunur və konfiqurasiya faylına təsir etmir"
++      },
++      "options": {
++        "proxyLayoutColumns": {
++          "auto": "Avtomatik sütunlar"
++        },
++        "autoLogClean": {
++          "never": "Heç vaxt təmizləmə",
++          "retainDays": "{{n}} gün saxla"
++        }
++      }
++    },
++    "update": {
++      "title": "Yeni versiya v{{version}}",
++      "actions": {
++        "goToRelease": "Buraxılış səhifəsinə keç",
++        "update": "Yenilə"
++      },
++      "messages": {
++        "breakChangeError": "Bu versiya böyük yeniləmədir və tətbiqdaxili yeniləməni dəstəkləmir. Tətbiqi silin, yeni versiyanı əl ilə endirib quraşdırın",
++        "available": "Yeni versiya mövcuddur"
++      },
++      "alerts": {
++        "note": "Qeyd",
++        "tip": "Məsləhət",
++        "important": "Vacib",
++        "warning": "Xəbərdarlıq",
++        "caution": "Diqqət"
++      }
++    },
++    "sysproxy": {
++      "title": "Sistem proksisi parametrləri",
++      "fieldsets": {
++        "currentStatus": "Cari sistem proksisi"
++      },
++      "fields": {
++        "enableStatus": "Aktivlik vəziyyəti:",
++        "serverAddr": "Server ünvanı: ",
++        "pacUrl": "PAC URL ünvanı: ",
++        "proxyHost": "Proksi qovşağı",
++        "usePacMode": "PAC rejimindən istifadə",
++        "proxyGuard": "Proksi mühafizəsi",
++        "guardDuration": "Mühafizə müddəti",
++        "alwaysUseDefaultBypass": "Həmişə standart proksi istisnalarından istifadə",
++        "enableBypassCheck": "Proksi istisnalarının formatının yoxlanması",
++        "proxyBypass": "Proksi istisnalarının parametrləri: ",
++        "bypass": "Proksi istisnaları: ",
++        "pacScriptContent": "PAC skriptinin məzmunu"
++      },
++      "tooltips": {
++        "proxyGuard": "Digər proqramların əməliyyat sisteminin proksi parametrlərini dəyişdirməsinin qarşısını almaq üçün aktivləşdirin"
++      },
++      "messages": {
++        "durationTooShort": "Proksinin arxa plan xidmətinin müddəti 1 saniyədən az ola bilməz",
++        "invalidBypass": "Proksi istisnalarının formatı yanlışdır",
++        "invalidProxyHost": "Proksi qovşağının formatı yanlışdır"
++      },
++      "actions": {
++        "editPac": "PAC skriptini redaktə et"
++      }
++    },
++    "tun": {
++      "title": "TUN rejimi",
++      "fields": {
++        "stack": "TUN protokol yığını",
++        "device": "Cihaz adı",
++        "autoRoute": "Avtomatik marşrutlaşdırma",
++        "routeExcludeAddress": "Marşrutlaşdırmadan istisna edilən ünvan",
++        "strictRoute": "Sərt marşrutlaşdırma",
++        "autoDetectInterface": "İnterfeysin avtomatik aşkarlanması",
++        "dnsHijack": "DNS sorğularının ələ keçirilməsi",
++        "mtu": "Maksimum ötürmə vahidi",
++        "autoRedirect": "Avtomatik yönləndirmə"
++      },
++      "tooltips": {
++        "dnsHijack": "Birdən çox DNS serverini ayırmaq üçün vergüldən istifadə edin",
++        "autoRedirect": "nftables/iptables TCP yönləndirmələrini avtomatik qurur"
++      },
++      "messages": {
++        "applied": "Parametrlər tətbiq edildi",
++        "invalidRouteExcludeAddress": "Etibarlı CIDR bloku daxil edin",
++        "routeExcludeAddressHint": "Yalnız IPv4/IPv6 CIDR dəstəklənir, məsələn, 192.168.0.0/16 və ya fd00::/8"
++      }
++    },
++    "dns": {
++      "dialog": {
++        "title": "DNS parametrlərinin əvəzlənməsi",
++        "warning": "Bu parametrlərlə tanış deyilsinizsə, onları dəyişdirməyin və DNS parametrlərinin əvəzlənməsini söndürülmüş saxlayın"
++      },
++      "protection": {
++        "title": "DNS parametrlərinin əvəzlənməsi aktivləşdirilsin?",
++        "message": "Bu abunəlikdə fərdi DNS parametrləri var. DNS parametrlərinin əvəzlənməsi onları dəyişərək qovşaqların əlaqə qurmasına və ya bəzi saytların yüklənməsinə mane ola bilər. Yenə də aktivləşdirilsin?",
++        "enableAnyway": "Yenə də aktivləşdir",
++        "keepDisabled": "Söndürülmüş saxla",
++        "autoDisabled": "Cari abunəlikdəki fərdi DNS parametrlərini qorumaq üçün DNS parametrlərinin əvəzlənməsi söndürüldü."
++      },
++      "sections": {
++        "general": "DNS parametrləri",
++        "fallbackFilter": "Ehtiyat server süzgəcinin parametrləri",
++        "hosts": "Qovşaq parametrləri"
++      },
++      "fields": {
++        "enable": "DNS xidmətinin aktivləşdirilməsi",
++        "listen": "DNS dinləmə ünvanı",
++        "enhancedMode": "Təkmilləşdirilmiş rejim",
++        "fakeIpRange": "Saxta IP aralığı",
++        "fakeIpRange6": "Saxta IP aralığı (IPv6)",
++        "fakeIpFilterMode": "Saxta IP süzgəcinin rejimi",
++        "ipv6": {
++          "label": "IPv6",
++          "description": "IPv6 üçün DNS həllini aktivləşdirin"
++        },
++        "preferH3": {
++          "label": "H3 üstünlüyü",
++          "description": "DNS DOH sorğularında HTTP/3 istifadə olunur"
++        },
++        "respectRules": {
++          "label": "Qaydalara riayət",
++          "description": "DNS əlaqələri marşrutlaşdırma qaydalarına riayət edir"
++        },
++        "useHosts": {
++          "label": "Qovşaq adları faylından istifadə",
++          "description": "Qovşaqların IP ünvanlarını qovşaq adları faylı vasitəsilə müəyyən etmək üçün aktivləşdirin"
++        },
++        "useSystemHosts": {
++          "label": "Sistemin qovşaq adları faylından istifadə",
++          "description": "Qovşaqların IP ünvanlarını sistemin qovşaq adları faylı vasitəsilə müəyyən etmək üçün aktivləşdirin"
++        },
++        "directPolicy": {
++          "label": "Birbaşa ad serverinin siyasətə riayəti",
++          "description": "Ad serveri siyasətinə riayət edilib-edilməməsi"
++        },
++        "defaultNameserver": {
++          "label": "Standart ad serveri",
++          "description": "DNS serverlərinin ünvanlarını həll etmək üçün istifadə olunan standart DNS serverləri"
++        },
++        "nameserver": {
++          "label": "Ad serveri",
++          "description": "Vergüllə ayrılmış DNS serverlərinin siyahısı"
++        },
++        "fallback": {
++          "label": "Ehtiyat serverlər",
++          "description": "Vergüllə ayrılmış ehtiyat DNS serverlərinin siyahısı"
++        },
++        "proxy": {
++          "label": "Proksi serveri üçün ad serveri",
++          "description": "Proksi qovşaqlarının domenlərini həll etmək üçün DNS serverləri"
++        },
++        "directNameserver": {
++          "label": "Birbaşa ad serveri",
++          "description": "Birbaşa çıxış üçün domenləri həll edən DNS serverləri, 'system' açar sözünü dəstəkləyir, vergüllə ayrılır"
++        },
++        "fakeIpFilter": {
++          "label": "Saxta IP süzgəci",
++          "description": "Saxta IP ünvanı təyin edilməyən domenlər, vergüllə ayrılır"
++        },
++        "nameserverPolicy": {
++          "label": "Ad serveri siyasəti",
++          "description": "Domenə məxsus DNS serveri, bir neçə server nöqtəli vergüllə ayrılır, format: domen=server1;server2"
++        },
++        "geoipFiltering": {
++          "label": "GeoIP süzgəci",
++          "description": "Ehtiyat serverlər üçün GeoIP süzgəcini aktivləşdirin"
++        },
++        "geoipCode": "GeoIP kodu",
++        "fallbackIpCidr": {
++          "label": "Ehtiyat serverlər üçün IP CIDR",
++          "description": "Ehtiyat serverlərdən istifadə etməyən IP CIDR blokları, vergüllə ayrılır"
++        },
++        "fallbackDomain": {
++          "label": "Ehtiyat server domeni",
++          "description": "Ehtiyat serverlərdən istifadə edən domenlər, vergüllə ayrılır"
++        },
++        "hosts": {
++          "label": "Qovşaqlar",
++          "description": "Domenin IP ünvanına və ya başqa domenə fərdi uyğunlaşdırılması"
++        }
++      },
++      "messages": {
++        "saved": "DNS parametrləri yadda saxlanıldı",
++        "configError": "DNS konfiqurasiya xətası:"
++      },
++      "errors": {
++        "invalid": "Yanlış konfiqurasiya",
++        "invalidYaml": "Yanlış YAML formatı"
++      }
++    },
++    "webUI": {
++      "actions": {
++        "openUrl": "URL ünvanını aç"
++      },
++      "title": "Veb interfeysi",
++      "messages": {
++        "supportedPlaceholders": "%host, %port, %secret dəstəklənir",
++        "placeholderInstruction": "Qovşağı, portu və məxfi açarı müvafiq olaraq %host, %port, %secret ilə əvəz edin"
++      },
++      "errors": {
++        "clashInfoUnavailable": "Nüvənin əlaqə məlumatları əlçatan deyil",
++        "invalidServer": "Nüvə serverinin \"{{server}}\" ünvanı yanlışdır",
++        "openFailed": "Veb interfeysini açmaq mümkün olmadı"
++      }
++    },
++    "hotkey": {
++      "toggles": {
++        "enableGlobal": "Qlobal qısayolun aktivləşdirilməsi"
++      },
++      "title": "Qısayol parametrləri",
++      "functions": {
++        "rule": "Qayda rejimi",
++        "global": "Qlobal rejim",
++        "openOrCloseDashboard": "İdarəetmə panelini aç/bağla",
++        "toggleSystemProxy": "Sistem proksisini aktivləşdir/söndür",
++        "toggleTunMode": "TUN rejimini aktivləşdir/söndür",
++        "entryLightweightMode": "Yüngül rejimə keç",
++        "direct": "Birbaşa rejim",
++        "reactivateProfiles": "Profilləri yenidən aktivləşdir"
++      }
++    },
++    "networkInterface": {
++      "title": "Şəbəkə interfeysi",
++      "fields": {
++        "ipAddress": "IP ünvanı",
++        "macAddress": "MAC ünvanı"
++      }
++    }
++  },
++  "feedback": {
++    "errors": {
++      "clash": {
++        "configUpdateFailed": "Nüvə konfiqurasiyasını yeniləmək mümkün olmadı",
++        "modeUpdateFailed": "Proksi rejimini dəyişmək mümkün olmadı",
++        "restartFailed": "Nüvəni yenidən başlatmaq mümkün olmadı",
++        "startFailed": "Nüvəni başlatmaq mümkün olmadı",
++        "stopFailed": "Nüvəni dayandırmaq mümkün olmadı"
++      },
++      "clashService": {
++        "installFailed": "Xidməti quraşdırmaq mümkün olmadı",
++        "uninstallFailed": "Xidməti silmək mümkün olmadı",
++        "reinstallFailed": "Xidməti yenidən quraşdırmaq mümkün olmadı",
++        "repairFailed": "Xidməti bərpa etmək mümkün olmadı",
++        "sidecarFailed": "Köməkçi proseslə davam etmək mümkün olmadı"
++      },
++      "sysproxy": {
++        "privilegeRequired": "Sistem proksisini təyin etmək mümkün deyil: macOS səlahiyyət çatışmazlığı səbəbindən dəyişikliyi rədd etdi. Clash Verge xidmətini quraşdırın; inzibatçı həmçinin Sistem parametrləri → Məxfilik və təhlükəsizlik bölməsinin genişləndirilmiş seçimlərində bütün sistem üzrə parametrlər üçün inzibatçı parolu tələbini söndürə bilər.",
++        "directFallback": "Sistem proksisini təyin etmək mümkün olmadı; trafik yenidən birbaşa əlaqəyə keçirildi.",
++        "guardStopped": "Sistem proksisinin mühafizəsi bir neçə uğursuz cəhddən sonra dayandı. Sistem proksisinin təyin olunmuş vəziyyəti artıq qorunmur.",
++        "sidecarWhileServiceReady": "Clash Verge xidməti hazır olsa da, nüvə hələ də köməkçi proses kimi işlədiyi üçün sistem proksisini təyin etmək mümkün olmadı. Xidmət rejiminə keçmək üçün nüvəni yenidən başladın.",
++        "coreNotReady": "Nüvə işləmədiyi üçün sistem proksisini aktivləşdirmək mümkün olmadı. Nüvəni başladın (və ya Clash Verge xidmətini quraşdırın/bərpa edin) və yenidən cəhd edin.",
++        "systemCallFailed": "Windows sistem çağırışı uğursuz olduğu üçün sistem proksisinin parametrlərini tətbiq etmək mümkün olmadı. Bu hal adətən müvəqqəti olur, yenidən cəhd edin."
++      }
++    },
++    "notifications": {
++      "clash": {
++        "restartSuccess": "Clash nüvəsi yenidən başladıldı",
++        "versionUpdated": "Nüvə versiyası yeniləndi",
++        "alreadyLatestVersion": "Artıq ən son nüvə versiyasından istifadə olunur",
++        "changeSuccess": "Nüvə uğurla dəyişdirildi",
++        "changeFailed": "Nüvəni dəyişmək mümkün olmadı",
++        "geoDataUpdated": "Coğrafi məlumatlar yeniləndi"
++      },
++      "clashService": {
++        "installSuccess": "Xidmət uğurla quraşdırıldı",
++        "uninstallSuccess": "Xidmət uğurla silindi"
++      },
++      "updater": {
++        "withClashProxySuccess": "Clash proksisi ilə yeniləmə uğurla tamamlandı",
++        "withClashProxyFailed": "Clash proksisi ilə də yeniləmək mümkün olmadı"
++      }
++    }
++  },
++  "statuses": {
++    "clash": {
++      "stopping": "Nüvə dayandırılır...",
++      "restarting": "Nüvə yenidən başladılır..."
++    },
++    "clashService": {
++      "installing": "Xidmət quraşdırılır...",
++      "uninstalling": "Xidmət silinir..."
++    }
++  }
++}
+diff --git a/src/locales/az/shared.json b/src/locales/az/shared.json
+new file mode 100644
+index 00000000..5468910d
+--- /dev/null
++++ b/src/locales/az/shared.json
+@@ -0,0 +1,144 @@
++{
++  "actions": {
++    "cancel": "Ləğv et",
++    "close": "Bağla",
++    "confirm": "Təsdiqlə",
++    "save": "Yadda saxla",
++    "delete": "Sil",
++    "edit": "Redaktə et",
++    "new": "Yenisini yarat",
++    "enable": "Aktivləşdir",
++    "upgrade": "Yenilə",
++    "restart": "Yenidən başlat",
++    "resetToDefault": "Standart parametrlərə sıfırla",
++    "refresh": "Yenilə",
++    "retry": "Yenidən cəhd et",
++    "refreshPage": "Səhifəni yenilə",
++    "showDetails": "Təfərrüatları göstər",
++    "hideDetails": "Təfərrüatları gizlət",
++    "listView": "Siyahı görünüşünə keç",
++    "tableView": "Cədvəl görünüşünə keç",
++    "pause": "Fasilə ver",
++    "resume": "Davam et",
++    "closeAll": "Hamısını bağla",
++    "clear": "Təmizlə",
++    "previous": "Əvvəlkinə keç",
++    "next": "Növbətiyə keç",
++    "check": "Yoxla"
++  },
++  "labels": {
++    "updateAt": "Yenilənmə tarixi",
++    "timeout": "Gözləmə müddəti",
++    "icon": "İkon",
++    "name": "Ad",
++    "readOnly": "Yalnız oxumaq üçün",
++    "expireTime": "Bitmə vaxtı",
++    "updateTime": "Yenilənmə vaxtı",
++    "usedTotal": "İstifadə olunan / ümumi",
++    "from": "Mənbə",
++    "password": "Şifrə",
++    "retryAttempts": "Təkrar cəhdlərin sayı",
++    "downloaded": "Endirilib",
++    "uploaded": "Yüklənib"
++  },
++  "statuses": {
++    "enabled": "Aktivdir",
++    "disabled": "Söndürülüb",
++    "saving": "Yadda saxlanılır...",
++    "empty": "Boşdur",
++    "loading": "Yüklənir..."
++  },
++  "units": {
++    "milliseconds": "ms",
++    "seconds": "saniyə",
++    "minutes": "dəqiqə",
++    "hours": "saat",
++    "kilobytes": "KB",
++    "files": "Fayllar"
++  },
++  "placeholders": {
++    "resetInput": "Daxil ediləni təmizlə",
++    "filter": "Süzgəc şərtləri",
++    "matchCase": "Böyük və kiçik hərfləri fərqləndir",
++    "matchWholeWord": "Yalnız bütöv sözləri tap",
++    "useRegex": "Müntəzəm ifadədən istifadə et"
++  },
++  "validation": {
++    "invalidRegex": "Yanlış müntəzəm ifadə"
++  },
++  "window": {
++    "maximize": "Böyüt",
++    "minimize": "Kiçilt"
++  },
++  "editorModes": {
++    "visualization": "Vizuallaşdırma",
++    "advanced": "Genişləndirilmiş"
++  },
++  "feedback": {
++    "errors": {
++      "unexpected": "Xəta baş verdi",
++      "label": "Xəta",
++      "unknown": "Naməlum xəta",
++      "details": "Xəta təfərrüatları",
++      "stack": "Xəta steki",
++      "componentStack": "Komponent steki",
++      "trafficUnavailable": "Trafik məlumatları əlçatan deyil",
++      "operationFailed": "Əməliyyat uğursuz oldu",
++      "trafficStats": "Trafik statistikası xətası",
++      "trafficStatsDescription": "Trafik statistikası komponentində xəta baş verdi. Proqramın çökməsinin qarşısını almaq üçün komponent söndürüldü."
++    },
++    "notices": {
++      "raw": "{{message}}",
++      "prefixedRaw": "{{prefix}} {{message}}"
++    },
++    "notifications": {
++      "importSuccess": "Profil uğurla idxal edildi",
++      "importSubscriptionSuccess": "Abunəlik uğurla idxal edildi",
++      "importWithClashProxy": "Profil Clash proksisi ilə idxal edildi",
++      "updateAvailable": "Yeniləmə mövcuddur",
++      "saved": "Uğurla yadda saxlanıldı",
++      "common": {
++        "copySuccess": "Uğurla kopyalandı",
++        "saveSuccess": "Konfiqurasiya uğurla yadda saxlanıldı",
++        "saveFailed": "Konfiqurasiyanı yadda saxlamaq mümkün olmadı",
++        "refreshFailed": "Yeniləmə uğursuz oldu; son yüklənmiş dəyər göstərilir"
++      }
++    },
++    "validation": {
++      "config": {
++        "failed": "Abunəlik konfiqurasiyasının yoxlanması uğursuz oldu. Abunəliyin konfiqurasiya faylını yoxlayın; dəyişikliklər geri qaytarıldı.",
++        "bootFailed": "Başlanğıcda abunəlik konfiqurasiyasının yoxlanması uğursuz oldu. Standart konfiqurasiya ilə başladıldı; abunəliyin konfiqurasiya faylını yoxlayın.",
++        "coreChangeFailed": "Nüvə dəyişdirilərkən konfiqurasiyanın yoxlanması uğursuz oldu. Standart konfiqurasiya ilə başladıldı; abunəliyin konfiqurasiya faylını yoxlayın.",
++        "processTerminated": "Yoxlama prosesi dayandırıldı. Təhlükəsizlik proqramının nüvənin işləməsinə mane olub-olmadığını və ya kompüterinizin prosessorunun və icra mühitinin nüvənin icra faylını dəstəkləyib-dəstəkləmədiyini yoxlayın."
++      },
++      "script": {
++        "syntaxError": "Script sintaksis xətası, dəyişikliklər geri qaytarıldı",
++        "missingMain": "Script xətası, dəyişikliklər geri qaytarıldı",
++        "fileNotFound": "Fayl tapılmadı, dəyişikliklər geri qaytarıldı",
++        "fileError": "Script faylı xətası, dəyişikliklər geri qaytarıldı"
++      },
++      "yaml": {
++        "syntaxError": "YAML sintaksis xətası, dəyişikliklər geri qaytarıldı",
++        "readError": "YAML oxuma xətası, dəyişikliklər geri qaytarıldı",
++        "mappingError": "YAML uyğunlaşdırma xətası, dəyişikliklər geri qaytarıldı",
++        "keyError": "YAML açar xətası, dəyişikliklər geri qaytarıldı",
++        "generalError": "YAML xətası, dəyişikliklər geri qaytarıldı"
++      },
++      "merge": {
++        "syntaxError": "Merge faylının sintaksis xətası, dəyişikliklər geri qaytarıldı",
++        "mappingError": "Merge faylının uyğunlaşdırma xətası, dəyişikliklər geri qaytarıldı",
++        "keyError": "Merge faylının açar xətası, dəyişikliklər geri qaytarıldı",
++        "generalError": "Merge faylı xətası, dəyişikliklər geri qaytarıldı"
++      }
++    }
++  },
++  "filters": {
++    "logLevels": {
++      "all": "Hamısı",
++      "debug": "Sazlama",
++      "info": "Məlumat",
++      "warn": "Xəbərdarlıq",
++      "error": "Xəta"
++    }
++  }
++}
+diff --git a/src/locales/az/tests.json b/src/locales/az/tests.json
+new file mode 100644
+index 00000000..e51d9630
+--- /dev/null
++++ b/src/locales/az/tests.json
+@@ -0,0 +1,60 @@
++{
++  "page": {
++    "actions": {
++      "testAll": "Hamısını sına"
++    },
++    "title": "Sınaq"
++  },
++  "components": {
++    "item": {
++      "actions": {
++        "test": "Sına"
++      }
++    }
++  },
++  "modals": {
++    "test": {
++      "title": {
++        "create": "Sınağın yaradılması",
++        "edit": "Sınağın redaktəsi"
++      },
++      "fields": {
++        "url": "Sınağın URL ünvanı"
++      },
++      "errors": {
++        "nameRequired": "Ad daxil edin",
++        "urlRequired": "Sınağın URL ünvanını daxil edin",
++        "invalidSvg": "İkon etibarlı SVG formatında deyil",
++        "uidMissing": "Sınaq elementinin identifikatoru yoxdur",
++        "saveFailed": "Sınaq elementini yadda saxlamaq mümkün olmadı"
++      }
++    }
++  },
++  "statuses": {
++    "test": {
++      "pending": "Gözləyir",
++      "yes": "Bəli",
++      "no": "Xeyr",
++      "failed": "Uğursuz oldu",
++      "completed": "Tamamlandı",
++      "disallowedIsp": "İcazə verilməyən internet provayderi",
++      "originalsOnly": "Yalnız orijinal məzmun",
++      "noDisney": "Xeyr (IP ünvanı Disney+ tərəfindən bloklanıb)",
++      "unsupportedRegion": "Dəstəklənməyən ölkə/region",
++      "failedNetwork": "Uğursuz oldu (şəbəkə əlaqəsi)"
++    }
++  },
++  "unlock": {
++    "page": {
++      "actions": {
++        "testing": "Sınaq aparılır..."
++      },
++      "empty": "Giriş məhdudiyyətini yoxlamaq üçün sınaq yoxdur",
++      "messages": {
++        "detectionFailedWithName": "{{name}} üçün yoxlama uğursuz oldu",
++        "detectionTimeout": "Yoxlamanın gözləmə müddəti bitdi və ya yoxlama uğursuz oldu"
++      },
++      "title": "Giriş məhdudiyyəti sınağı"
++    }
++  }
++}
+diff --git a/src/services/i18n.ts b/src/services/i18n.ts
+index d614c5e9..0687df59 100644
+--- a/src/services/i18n.ts
++++ b/src/services/i18n.ts
+@@ -15,6 +15,7 @@ export const supportedLanguages = [
+   'es',
+   'jp',
+   'zhtw',
++  'az',
+ ]
+ 
+ export const FALLBACK_LANGUAGE = 'zh'
