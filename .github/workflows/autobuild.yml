@@ -1,11 +1,17 @@
 name: Auto Build
 
 on:
-  workflow_dispatch:
-  schedule:
-    # UTC+8 12:00, 18:00 -> UTC 4:00, 10:00
-    - cron: '0 4,10 * * *'
-permissions: write-all
+  workflow_call:
+    secrets:
+      TAURI_PRIVATE_KEY:
+        required: true
+      TAURI_KEY_PASSWORD:
+        required: true
+      TELEGRAM_BOT_TOKEN:
+        required: true
+permissions:
+  contents: write
+  actions: read
 env:
   TAG_NAME: autobuild
   TAG_CHANNEL: AutoBuild
@@ -19,7 +25,7 @@ concurrency:
 jobs:
   check_commit:
     name: Check Commit Needs Build
-    uses: clash-verge-rev/clash-verge-rev/.github/workflows/check-commit-needs-build.yml@dev
+    uses: ./.github/workflows/check-commit-needs-build.yml
     with:
       tag_name: autobuild
       force_build: ${{ github.event_name == 'workflow_dispatch' }}
@@ -120,7 +126,7 @@ jobs:
     needs: [check_commit, update_tag]
     if: ${{ needs.check_commit.outputs.should_run == 'true' && needs.update_tag.result == 'success' }}
 
-    uses: clash-verge-rev/clash-verge-rev/.github/workflows/clean-old-assets.yml@dev
+    uses: ./.github/workflows/clean-old-assets.yml
     with:
       tag_name: autobuild
       dry_run: false
@@ -510,11 +516,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
 
-      - name: Fetch UPDATE logs
-        id: fetch_update_logs
-        run: bash ./scripts/extract_update_logs.sh
-        shell: bash
-
       - name: Install Node
         uses: actions/setup-node@v7
         with:
@@ -538,6 +539,11 @@ jobs:
           echo "VERSION=$(cat package.json | jq '.version' | tr -d '"')" >> $GITHUB_ENV
           echo "DOWNLOAD_URL=https://github.com/clash-verge-rev/clash-verge-rev/releases/download/autobuild" >> $GITHUB_ENV
           echo "BUILDTIME=$(TZ=Asia/Shanghai date)" >> $GITHUB_ENV
+
+      - name: Fetch UPDATE logs
+        id: fetch_update_logs
+        run: bash ./scripts/extract_update_logs.sh
+        shell: bash
 
       - name: Generate release.txt
         run: |

@@ -62,6 +62,16 @@ jobs:
           git rebase --verbose upstream/dev
 
       - name: Push changes
+        id: push
         if: steps.check.outputs.SHOULD_REBASE == 'true'
         run: |
           git push --verbose --progress --force-with-lease origin dev
+          if [ $? == 0 ]; then
+            echo 'SHOULD_BUILD=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'SHOULD_BUILD=false' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Generate Autobuild Assets
+        if: steps.push.outputs.SHOULD_BUILD == 'true'
+        uses: ./.github/workflows/autobuild.yml
