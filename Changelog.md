@@ -25,6 +25,12 @@
 
 - **Mihomo 内核升级至 v1.19.34**
 
+### ⚠️ 主要差异
+
+
+
+### ℹ️ 上游更新
+
 <details>
 <summary><strong> 🐞 修复问题 </strong></summary>
 
