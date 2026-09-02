@@ -21,6 +21,12 @@
      GitHub, so they never reach users. -->
 ## v2.6.0
 
+### ⚠️ 主要差异
+
+
+
+### ℹ️ 上游更新
+
 <details>
 <summary><strong> 🐞 修复问题 </strong></summary>
 
