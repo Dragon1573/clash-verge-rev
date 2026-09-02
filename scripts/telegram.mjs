@@ -4,8 +4,10 @@ import axios from 'axios'
 
 import { log_error, log_info, log_success } from './utils.mjs'
 
-const CHAT_ID_RELEASE = '@clash_verge_re' // 正式发布频道
-const CHAT_ID_TEST = '@vergetest' // 测试频道
+const CHAT_ID_RELEASE = '-1003390929023' // 正式发布群组
+const CHAT_ID_TEST = '-1003390929023' // 测试群组
+const TOPIC_ID_RELEASE = '527' // 正式发布话题
+const TOPIC_ID_TEST = '527' // 测试话题
 
 async function sendTelegramNotification() {
   if (!process.env.TELEGRAM_BOT_TOKEN) {
@@ -21,11 +23,12 @@ async function sendTelegramNotification() {
 
   const downloadUrl =
     process.env.DOWNLOAD_URL ||
-    `https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v${version}`
+    `https://github.com/Dragon1573/clash-verge-rev/releases/download/v${version}`
 
   const isAutobuild =
     process.env.BUILD_TYPE === 'autobuild' || version.includes('autobuild')
   const chatId = isAutobuild ? CHAT_ID_TEST : CHAT_ID_RELEASE
+  const topicId = isAutobuild ? TOPIC_ID_TEST : TOPIC_ID_RELEASE
   const buildType = isAutobuild ? '滚动更新版' : '正式版'
 
   log_info(`Preparing Telegram notification for ${buildType} ${version}`)
@@ -62,7 +65,7 @@ async function sendTelegramNotification() {
         } else {
           let processedLine = line.replace(
             /\[([^\]]+)\]\(([^)]+)\)/g,
-            (match, text, url) => {
+            (_match, text, url) => {
               const encodedUrl = encodeURI(url)
               return `<a href="${encodedUrl}">${text}</a>`
             },
@@ -106,18 +109,19 @@ async function sendTelegramNotification() {
 
   const releaseTitle = isAutobuild ? '滚动更新版发布' : '正式发布'
   const encodedVersion = encodeURIComponent(version)
-  const releaseTag = isAutobuild ? 'autobuild' : `v${version}`
-  const content = `<b>🎉 <a href="https://github.com/clash-verge-rev/clash-verge-rev/releases/tag/${releaseTag}">Clash Verge Rev v${version}</a> ${releaseTitle}</b>\n\n${formattedContent}`
+  const releaseTag = isAutobuild ? 'daily' : `v${version}`
+  const content = `<b>🎉 <a href="https://github.com/Dragon1573/clash-verge-rev/releases/tag/${releaseTag}">Clash Verge Rev v${version}</a> ${releaseTitle}</b>\n\n${formattedContent}`
 
   try {
     await axios.post(
       `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
       {
         chat_id: chatId,
+        message_thread_id: topicId,
         text: content,
         link_preview_options: {
           is_disabled: false,
-          url: `https://github.com/clash-verge-rev/clash-verge-rev/releases/tag/v${encodedVersion}`,
+          url: `https://github.com/Dragon1573/clash-verge-rev/releases/tag/v${encodedVersion}`,
           prefer_large_media: true,
         },
         parse_mode: 'HTML',
