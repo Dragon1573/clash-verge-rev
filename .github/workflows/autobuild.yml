@@ -146,6 +146,20 @@ jobs:
         with:
           fetch-depth: 50
 
+      - name: Apply Out-of-tree Patches
+        run: |
+          # Applying out-of-tree patches ...
+          $patches = Get-ChildItem .\patches\*.patch
+          Write-Output "Find $((Measure-Object -InputObject $patches).Count) patches!"
+          foreach ($patch in $patches) {
+            Write-Output "::group::Applying $patch"
+            git apply --verbose $patch
+            if ($LASTEXITCODE) {
+              Write-Output "::error Cannot apply $patch!"
+            }
+            Write-Output "::endgroup::"
+          }
+
       - name: Install Rust Stable
         uses: dtolnay/rust-toolchain@master
         with:
